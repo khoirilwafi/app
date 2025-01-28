@@ -1,0 +1,1381 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=UTF-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>DLMS 260 Wafi's Project</title>
+<link rel=stylesheet href=style.css>
+</head>
+<body>
+<div class=connection-screen>
+<div class=connection-card id=comunication-card>
+<input class=text-input name=address id=ip-address placeholder="Masukkan Alamat IP">
+<button type=button id=socket-button>
+<div id=button-socket-text>Sambungkan</div>
+<div id=socket-spinner class=spinner style=display:none></div>
+</button>
+<div class=serial-button-container>
+<hr>
+<button type=button id=serial-button>Gunakan Serial</button>
+</div>
+</div>
+<div class=connection-card id=loading-card style=display:none>
+<div class=loading-text>
+Proses: 0/47
+</div>
+<div class=loading-container>
+<div class=loading-value></div>
+</div>
+</div>
+</div>
+<div class=home>
+<div class=channel>
+<div class=channel-processing>
+<div class=processing-card data-id=equalizer data-index=0>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 28.5335 20.589 33.6789V33.6789C21.9583 37.9913 28.0909 38.0229 29.4171 33.697V33.697C31.0016 28.5286 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 21.4665 20.589 16.3211V16.3211C21.9583 12.0087 28.0909 11.9771 29.4171 16.303V16.303C31.0016 21.4714 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Equalizer</div>
+</div>
+</div>
+<div class=channel-separator>
+<hr>
+</div>
+<div class=channel-fader>
+<div class=fader-label>
+<div class="label text-bold input">A</div>
+<div class=label id=gain-channel-0>0.0</div>
+</div>
+<div class=fader-content>
+<div class=meter-holder>
+<div class=meter-scale>
+<div>Peak</div>
+<div>[ - 10 ]</div>
+<div>[ - 20 ]</div>
+<div>[ - 30 ]</div>
+<div>[ - 35 ]</div>
+<div>[ - 40 ]</div>
+<div>[ - 50 ]</div>
+<div>[ - 60 ]</div>
+</div>
+<div class=meter-background></div>
+<div class=meter-value id=vu-channel-0></div>
+</div>
+<div class=fader-holder>
+<input class=fader-slider type=range data-index=0 id=fader-channel-0 min=-15 max=15 step=0.2 value=0>
+</div>
+</div>
+<button type=button class=mute-button data-index=0 id=mute-channel-0>Mute</button>
+</div>
+</div>
+<div class=channel>
+<div class=channel-processing>
+<div class=processing-card data-id=equalizer data-index=1>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 28.5335 20.589 33.6789V33.6789C21.9583 37.9913 28.0909 38.0229 29.4171 33.697V33.697C31.0016 28.5286 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 21.4665 20.589 16.3211V16.3211C21.9583 12.0087 28.0909 11.9771 29.4171 16.303V16.303C31.0016 21.4714 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Equalizer</div>
+</div>
+</div>
+<div class=channel-separator>
+<hr>
+</div>
+<div class=channel-fader>
+<div class=fader-label>
+<div class="label text-bold input">B</div>
+<div class=label id=gain-channel-1>0.0</div>
+</div>
+<div class=fader-content>
+<div class=meter-holder>
+<div class=meter-scale>
+<div>Peak</div>
+<div>[ - 10 ]</div>
+<div>[ - 20 ]</div>
+<div>[ - 30 ]</div>
+<div>[ - 35 ]</div>
+<div>[ - 40 ]</div>
+<div>[ - 50 ]</div>
+<div>[ - 60 ]</div>
+</div>
+<div class=meter-background></div>
+<div class=meter-value id=vu-channel-1></div>
+</div>
+<div class=fader-holder>
+<input class=fader-slider type=range data-index=1 id=fader-channel-1 min=-15 max=15 step=0.2 value=0>
+</div>
+</div>
+<button type=button class=mute-button data-index=1 id=mute-channel-1>Mute</button>
+</div>
+</div>
+<div class=channel>
+<div class=channel-processing>
+<div class=processing-card data-id=routing data-index=2>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<mask id=path-1-inside-1_4_4 fill=white>
+<path fill-rule=evenodd clip-rule=evenodd d="M41.6667 1.66667H8.33333C4.65144 1.66667 1.66667 4.65144 1.66667 8.33333V41.6667C1.66667 45.3486 4.65144 48.3333 8.33333 48.3333H41.6667C45.3486 48.3333 48.3333 45.3486 48.3333 41.6667V8.33333C48.3333 4.65144 45.3486 1.66667 41.6667 1.66667ZM8.33333 0C3.73096 0 0 3.73096 0 8.33333V41.6667C0 46.269 3.73096 50 8.33333 50H41.6667C46.269 50 50 46.269 50 41.6667V8.33333C50 3.73096 46.269 0 41.6667 0H8.33333Z"/>
+</mask>
+<path d="M8.33333 3.66667H41.6667V-0.333333H8.33333V3.66667ZM3.66667 8.33333C3.66667 5.75601 5.75601 3.66667 8.33333 3.66667V-0.333333C3.54687 -0.333333 -0.333333 3.54687 -0.333333 8.33333H3.66667ZM3.66667 41.6667V8.33333H-0.333333V41.6667H3.66667ZM8.33333 46.3333C5.756 46.3333 3.66667 44.244 3.66667 41.6667H-0.333333C-0.333333 46.4531 3.54687 50.3333 8.33333 50.3333V46.3333ZM41.6667 46.3333H8.33333V50.3333H41.6667V46.3333ZM46.3333 41.6667C46.3333 44.244 44.244 46.3333 41.6667 46.3333V50.3333C46.4531 50.3333 50.3333 46.4531 50.3333 41.6667H46.3333ZM46.3333 8.33333V41.6667H50.3333V8.33333H46.3333ZM41.6667 3.66667C44.244 3.66667 46.3333 5.75601 46.3333 8.33333H50.3333C50.3333 3.54687 46.4531 -0.333333 41.6667 -0.333333V3.66667ZM2 8.33333C2 4.83553 4.83553 2 8.33333 2V-2C2.62639 -2 -2 2.62639 -2 8.33333H2ZM2 41.6667V8.33333H-2V41.6667H2ZM8.33333 48C4.83553 48 2 45.1645 2 41.6667H-2C-2 47.3736 2.62639 52 8.33333 52V48ZM41.6667 48H8.33333V52H41.6667V48ZM48 41.6667C48 45.1645 45.1645 48 41.6667 48V52C47.3736 52 52 47.3736 52 41.6667H48ZM48 8.33333V41.6667H52V8.33333H48ZM41.6667 2C45.1645 2 48 4.83553 48 8.33333H52C52 2.62639 47.3736 -2 41.6667 -2V2ZM8.33333 2H41.6667V-2H8.33333V2Z" fill=white mask=url(#path-1-inside-1_4_4) />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.134 35.4167H8.49959V37.0833H21.134C21.524 39.1396 23.3307 40.6944 25.5004 40.6944C27.955 40.6944 29.9449 38.7046 29.9449 36.25C29.9449 33.7954 27.955 31.8056 25.5004 31.8056C23.3307 31.8056 21.524 33.3604 21.134 35.4167Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.1344 13.6667H8.5V15.3333H21.1344C21.5245 17.3896 23.3311 18.9444 25.5008 18.9444C27.9554 18.9444 29.9453 16.9546 29.9453 14.5C29.9453 12.0454 27.9554 10.0556 25.5008 10.0556C23.3311 10.0556 21.5245 11.6104 21.1344 13.6667Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M29.8597 24.5059L42.4941 24.5059V26.1726L29.8597 26.1726C29.4696 28.2289 27.663 29.7837 25.4932 29.7837C23.0386 29.7837 21.0488 27.7939 21.0488 25.3393C21.0488 22.8847 23.0386 20.8948 25.4932 20.8948C27.663 20.8948 29.4696 22.4497 29.8597 24.5059Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M27.0833 6.9998L27.0833 43.5002H23.75L23.75 6.9998H27.0833Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Routing</div>
+</div>
+<div class=processing-card data-id=crossover data-index=2>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M9.5 12.8333V12.8333C16.9769 12.8333 23.9169 16.7176 27.8269 23.0907L38.9167 41.1667" stroke=white stroke-width=2 />
+<path d="M40.5833 12.8333V12.8333C33.1064 12.8333 26.1664 16.7176 22.2565 23.0907L11.1667 41.1667" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Crossover</div>
+</div>
+<div class=processing-card data-id=equalizer data-index=2>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 28.5335 20.589 33.6789V33.6789C21.9583 37.9913 28.0909 38.0229 29.4171 33.697V33.697C31.0016 28.5286 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 21.4665 20.589 16.3211V16.3211C21.9583 12.0087 28.0909 11.9771 29.4171 16.303V16.303C31.0016 21.4714 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Equalizer</div>
+</div>
+<div class=processing-card data-id=dynamic data-index=2>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=7.37602 y1=42.5431 x2=42.0431 y2=7.87601 stroke=white stroke-width=2 />
+<line x1=26 y1=25 x2=41.8333 y2=25 stroke=white stroke-width=2 stroke-linecap=round />
+<line x1=26.8016 y1=23.9989 x2=41.9947 y2=16.6984 stroke=white stroke-width=2 stroke-linecap=round />
+</svg>
+</div>
+<div class=processing-name>Dynamic</div>
+</div>
+<div class=processing-card data-id=phase data-index=2>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.7812 36.91C12.3958 39.6887 14.8592 41.6667 17.705 41.6667V41.6667C20.5916 41.6667 23.0785 39.6329 23.6514 36.8038L28.5203 12.76C29.0418 10.1847 31.3056 8.33337 33.9331 8.33337V8.33337C36.3916 8.33337 38.554 9.95839 39.2379 12.3198L42.5 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+<path d="M19.5587 31.9915V32.7727H16.3769V31.9915H19.5587Z" fill=white />
+<path d="M33.8977 19.5028V14.8153H34.6932V19.5028H33.8977ZM31.9517 17.5568V16.7614H36.6392V17.5568H31.9517Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Phase</div>
+</div>
+<div class=processing-card data-id=delay data-index=2>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.2038 38.1118C11.5382 40.1615 13.309 41.6667 15.3858 41.6667V41.6667C17.4842 41.6667 19.2666 40.1308 19.5766 38.0554L23.529 11.5946C23.8089 9.72037 25.4185 8.33337 27.3135 8.33337V8.33337C29.1187 8.33337 30.6784 9.59505 31.0555 11.3604L33.6667 23.5834" stroke=white stroke-width=2 />
+<path d="M16 23.5834L18.3705 38.1118C18.7049 40.1615 20.4756 41.6667 22.5524 41.6667V41.6667C24.6509 41.6667 26.4332 40.1308 26.7432 38.0554L30.6956 11.5946C30.9756 9.72037 32.5851 8.33337 34.4801 8.33337V8.33337C36.2854 8.33337 37.845 9.59505 38.2222 11.3604L40.8333 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Delay</div>
+</div>
+</div>
+<div class=channel-separator>
+<hr>
+</div>
+<div class=channel-fader>
+<div class=fader-label>
+<div class="label text-bold output">1</div>
+<div class=label id=gain-channel-2>0.0</div>
+</div>
+<div class=fader-content>
+<div class=meter-holder>
+<div class=meter-scale>
+<div>Peak</div>
+<div>[ - 10 ]</div>
+<div>[ - 20 ]</div>
+<div>[ - 30 ]</div>
+<div>[ - 35 ]</div>
+<div>[ - 40 ]</div>
+<div>[ - 50 ]</div>
+<div>[ - 60 ]</div>
+</div>
+<div class=meter-background></div>
+<div class=meter-value id=vu-channel-2></div>
+</div>
+<div class=fader-holder>
+<input class=fader-slider type=range data-index=2 id=fader-channel-2 min=-15 max=15 step=0.2 value=0>
+</div>
+</div>
+<button type=button class=mute-button data-index=2 id=mute-channel-2>Mute</button>
+</div>
+</div>
+<div class=channel>
+<div class=channel-processing>
+<div class=processing-card data-id=routing data-index=3>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<mask id=path-1-inside-1_4_4 fill=white>
+<path fill-rule=evenodd clip-rule=evenodd d="M41.6667 1.66667H8.33333C4.65144 1.66667 1.66667 4.65144 1.66667 8.33333V41.6667C1.66667 45.3486 4.65144 48.3333 8.33333 48.3333H41.6667C45.3486 48.3333 48.3333 45.3486 48.3333 41.6667V8.33333C48.3333 4.65144 45.3486 1.66667 41.6667 1.66667ZM8.33333 0C3.73096 0 0 3.73096 0 8.33333V41.6667C0 46.269 3.73096 50 8.33333 50H41.6667C46.269 50 50 46.269 50 41.6667V8.33333C50 3.73096 46.269 0 41.6667 0H8.33333Z"/>
+</mask>
+<path d="M8.33333 3.66667H41.6667V-0.333333H8.33333V3.66667ZM3.66667 8.33333C3.66667 5.75601 5.75601 3.66667 8.33333 3.66667V-0.333333C3.54687 -0.333333 -0.333333 3.54687 -0.333333 8.33333H3.66667ZM3.66667 41.6667V8.33333H-0.333333V41.6667H3.66667ZM8.33333 46.3333C5.756 46.3333 3.66667 44.244 3.66667 41.6667H-0.333333C-0.333333 46.4531 3.54687 50.3333 8.33333 50.3333V46.3333ZM41.6667 46.3333H8.33333V50.3333H41.6667V46.3333ZM46.3333 41.6667C46.3333 44.244 44.244 46.3333 41.6667 46.3333V50.3333C46.4531 50.3333 50.3333 46.4531 50.3333 41.6667H46.3333ZM46.3333 8.33333V41.6667H50.3333V8.33333H46.3333ZM41.6667 3.66667C44.244 3.66667 46.3333 5.75601 46.3333 8.33333H50.3333C50.3333 3.54687 46.4531 -0.333333 41.6667 -0.333333V3.66667ZM2 8.33333C2 4.83553 4.83553 2 8.33333 2V-2C2.62639 -2 -2 2.62639 -2 8.33333H2ZM2 41.6667V8.33333H-2V41.6667H2ZM8.33333 48C4.83553 48 2 45.1645 2 41.6667H-2C-2 47.3736 2.62639 52 8.33333 52V48ZM41.6667 48H8.33333V52H41.6667V48ZM48 41.6667C48 45.1645 45.1645 48 41.6667 48V52C47.3736 52 52 47.3736 52 41.6667H48ZM48 8.33333V41.6667H52V8.33333H48ZM41.6667 2C45.1645 2 48 4.83553 48 8.33333H52C52 2.62639 47.3736 -2 41.6667 -2V2ZM8.33333 2H41.6667V-2H8.33333V2Z" fill=white mask=url(#path-1-inside-1_4_4) />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.134 35.4167H8.49959V37.0833H21.134C21.524 39.1396 23.3307 40.6944 25.5004 40.6944C27.955 40.6944 29.9449 38.7046 29.9449 36.25C29.9449 33.7954 27.955 31.8056 25.5004 31.8056C23.3307 31.8056 21.524 33.3604 21.134 35.4167Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.1344 13.6667H8.5V15.3333H21.1344C21.5245 17.3896 23.3311 18.9444 25.5008 18.9444C27.9554 18.9444 29.9453 16.9546 29.9453 14.5C29.9453 12.0454 27.9554 10.0556 25.5008 10.0556C23.3311 10.0556 21.5245 11.6104 21.1344 13.6667Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M29.8597 24.5059L42.4941 24.5059V26.1726L29.8597 26.1726C29.4696 28.2289 27.663 29.7837 25.4932 29.7837C23.0386 29.7837 21.0488 27.7939 21.0488 25.3393C21.0488 22.8847 23.0386 20.8948 25.4932 20.8948C27.663 20.8948 29.4696 22.4497 29.8597 24.5059Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M27.0833 6.9998L27.0833 43.5002H23.75L23.75 6.9998H27.0833Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Routing</div>
+</div>
+<div class=processing-card data-id=crossover data-index=3>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M9.5 12.8333V12.8333C16.9769 12.8333 23.9169 16.7176 27.8269 23.0907L38.9167 41.1667" stroke=white stroke-width=2 />
+<path d="M40.5833 12.8333V12.8333C33.1064 12.8333 26.1664 16.7176 22.2565 23.0907L11.1667 41.1667" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Crossover</div>
+</div>
+<div class=processing-card data-id=equalizer data-index=3>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 28.5335 20.589 33.6789V33.6789C21.9583 37.9913 28.0909 38.0229 29.4171 33.697V33.697C31.0016 28.5286 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 21.4665 20.589 16.3211V16.3211C21.9583 12.0087 28.0909 11.9771 29.4171 16.303V16.303C31.0016 21.4714 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Equalizer</div>
+</div>
+<div class=processing-card data-id=dynamic data-index=3>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=7.37602 y1=42.5431 x2=42.0431 y2=7.87601 stroke=white stroke-width=2 />
+<line x1=26 y1=25 x2=41.8333 y2=25 stroke=white stroke-width=2 stroke-linecap=round />
+<line x1=26.8016 y1=23.9989 x2=41.9947 y2=16.6984 stroke=white stroke-width=2 stroke-linecap=round />
+</svg>
+</div>
+<div class=processing-name>Dynamic</div>
+</div>
+<div class=processing-card data-id=phase data-index=3>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.7812 36.91C12.3958 39.6887 14.8592 41.6667 17.705 41.6667V41.6667C20.5916 41.6667 23.0785 39.6329 23.6514 36.8038L28.5203 12.76C29.0418 10.1847 31.3056 8.33337 33.9331 8.33337V8.33337C36.3916 8.33337 38.554 9.95839 39.2379 12.3198L42.5 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+<path d="M19.5587 31.9915V32.7727H16.3769V31.9915H19.5587Z" fill=white />
+<path d="M33.8977 19.5028V14.8153H34.6932V19.5028H33.8977ZM31.9517 17.5568V16.7614H36.6392V17.5568H31.9517Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Phase</div>
+</div>
+<div class=processing-card data-id=delay data-index=3>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.2038 38.1118C11.5382 40.1615 13.309 41.6667 15.3858 41.6667V41.6667C17.4842 41.6667 19.2666 40.1308 19.5766 38.0554L23.529 11.5946C23.8089 9.72037 25.4185 8.33337 27.3135 8.33337V8.33337C29.1187 8.33337 30.6784 9.59505 31.0555 11.3604L33.6667 23.5834" stroke=white stroke-width=2 />
+<path d="M16 23.5834L18.3705 38.1118C18.7049 40.1615 20.4756 41.6667 22.5524 41.6667V41.6667C24.6509 41.6667 26.4332 40.1308 26.7432 38.0554L30.6956 11.5946C30.9756 9.72037 32.5851 8.33337 34.4801 8.33337V8.33337C36.2854 8.33337 37.845 9.59505 38.2222 11.3604L40.8333 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Delay</div>
+</div>
+</div>
+<div class=channel-separator>
+<hr>
+</div>
+<div class=channel-fader>
+<div class=fader-label>
+<div class="label text-bold output">2</div>
+<div class=label id=gain-channel-3>0.0</div>
+</div>
+<div class=fader-content>
+<div class=meter-holder>
+<div class=meter-scale>
+<div>Peak</div>
+<div>[ - 10 ]</div>
+<div>[ - 20 ]</div>
+<div>[ - 30 ]</div>
+<div>[ - 35 ]</div>
+<div>[ - 40 ]</div>
+<div>[ - 50 ]</div>
+<div>[ - 60 ]</div>
+</div>
+<div class=meter-background></div>
+<div class=meter-value id=vu-channel-3></div>
+</div>
+<div class=fader-holder>
+<input class=fader-slider type=range data-index=3 id=fader-channel-3 min=-15 max=15 step=0.2 value=0>
+</div>
+</div>
+<button type=button class=mute-button data-index=3 id=mute-channel-3>Mute</button>
+</div>
+</div>
+<div class=channel>
+<div class=channel-processing>
+<div class=processing-card data-id=routing data-index=4>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<mask id=path-1-inside-1_4_4 fill=white>
+<path fill-rule=evenodd clip-rule=evenodd d="M41.6667 1.66667H8.33333C4.65144 1.66667 1.66667 4.65144 1.66667 8.33333V41.6667C1.66667 45.3486 4.65144 48.3333 8.33333 48.3333H41.6667C45.3486 48.3333 48.3333 45.3486 48.3333 41.6667V8.33333C48.3333 4.65144 45.3486 1.66667 41.6667 1.66667ZM8.33333 0C3.73096 0 0 3.73096 0 8.33333V41.6667C0 46.269 3.73096 50 8.33333 50H41.6667C46.269 50 50 46.269 50 41.6667V8.33333C50 3.73096 46.269 0 41.6667 0H8.33333Z"/>
+</mask>
+<path d="M8.33333 3.66667H41.6667V-0.333333H8.33333V3.66667ZM3.66667 8.33333C3.66667 5.75601 5.75601 3.66667 8.33333 3.66667V-0.333333C3.54687 -0.333333 -0.333333 3.54687 -0.333333 8.33333H3.66667ZM3.66667 41.6667V8.33333H-0.333333V41.6667H3.66667ZM8.33333 46.3333C5.756 46.3333 3.66667 44.244 3.66667 41.6667H-0.333333C-0.333333 46.4531 3.54687 50.3333 8.33333 50.3333V46.3333ZM41.6667 46.3333H8.33333V50.3333H41.6667V46.3333ZM46.3333 41.6667C46.3333 44.244 44.244 46.3333 41.6667 46.3333V50.3333C46.4531 50.3333 50.3333 46.4531 50.3333 41.6667H46.3333ZM46.3333 8.33333V41.6667H50.3333V8.33333H46.3333ZM41.6667 3.66667C44.244 3.66667 46.3333 5.75601 46.3333 8.33333H50.3333C50.3333 3.54687 46.4531 -0.333333 41.6667 -0.333333V3.66667ZM2 8.33333C2 4.83553 4.83553 2 8.33333 2V-2C2.62639 -2 -2 2.62639 -2 8.33333H2ZM2 41.6667V8.33333H-2V41.6667H2ZM8.33333 48C4.83553 48 2 45.1645 2 41.6667H-2C-2 47.3736 2.62639 52 8.33333 52V48ZM41.6667 48H8.33333V52H41.6667V48ZM48 41.6667C48 45.1645 45.1645 48 41.6667 48V52C47.3736 52 52 47.3736 52 41.6667H48ZM48 8.33333V41.6667H52V8.33333H48ZM41.6667 2C45.1645 2 48 4.83553 48 8.33333H52C52 2.62639 47.3736 -2 41.6667 -2V2ZM8.33333 2H41.6667V-2H8.33333V2Z" fill=white mask=url(#path-1-inside-1_4_4) />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.134 35.4167H8.49959V37.0833H21.134C21.524 39.1396 23.3307 40.6944 25.5004 40.6944C27.955 40.6944 29.9449 38.7046 29.9449 36.25C29.9449 33.7954 27.955 31.8056 25.5004 31.8056C23.3307 31.8056 21.524 33.3604 21.134 35.4167Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.1344 13.6667H8.5V15.3333H21.1344C21.5245 17.3896 23.3311 18.9444 25.5008 18.9444C27.9554 18.9444 29.9453 16.9546 29.9453 14.5C29.9453 12.0454 27.9554 10.0556 25.5008 10.0556C23.3311 10.0556 21.5245 11.6104 21.1344 13.6667Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M29.8597 24.5059L42.4941 24.5059V26.1726L29.8597 26.1726C29.4696 28.2289 27.663 29.7837 25.4932 29.7837C23.0386 29.7837 21.0488 27.7939 21.0488 25.3393C21.0488 22.8847 23.0386 20.8948 25.4932 20.8948C27.663 20.8948 29.4696 22.4497 29.8597 24.5059Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M27.0833 6.9998L27.0833 43.5002H23.75L23.75 6.9998H27.0833Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Routing</div>
+</div>
+<div class=processing-card data-id=crossover data-index=4>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M9.5 12.8333V12.8333C16.9769 12.8333 23.9169 16.7176 27.8269 23.0907L38.9167 41.1667" stroke=white stroke-width=2 />
+<path d="M40.5833 12.8333V12.8333C33.1064 12.8333 26.1664 16.7176 22.2565 23.0907L11.1667 41.1667" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Crossover</div>
+</div>
+<div class=processing-card data-id=equalizer data-index=2>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 28.5335 20.589 33.6789V33.6789C21.9583 37.9913 28.0909 38.0229 29.4171 33.697V33.697C31.0016 28.5286 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 21.4665 20.589 16.3211V16.3211C21.9583 12.0087 28.0909 11.9771 29.4171 16.303V16.303C31.0016 21.4714 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Equalizer</div>
+</div>
+<div class=processing-card data-id=dynamic data-index=4>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=7.37602 y1=42.5431 x2=42.0431 y2=7.87601 stroke=white stroke-width=2 />
+<line x1=26 y1=25 x2=41.8333 y2=25 stroke=white stroke-width=2 stroke-linecap=round />
+<line x1=26.8016 y1=23.9989 x2=41.9947 y2=16.6984 stroke=white stroke-width=2 stroke-linecap=round />
+</svg>
+</div>
+<div class=processing-name>Dynamic</div>
+</div>
+<div class=processing-card data-id=phase data-index=4>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.7812 36.91C12.3958 39.6887 14.8592 41.6667 17.705 41.6667V41.6667C20.5916 41.6667 23.0785 39.6329 23.6514 36.8038L28.5203 12.76C29.0418 10.1847 31.3056 8.33337 33.9331 8.33337V8.33337C36.3916 8.33337 38.554 9.95839 39.2379 12.3198L42.5 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+<path d="M19.5587 31.9915V32.7727H16.3769V31.9915H19.5587Z" fill=white />
+<path d="M33.8977 19.5028V14.8153H34.6932V19.5028H33.8977ZM31.9517 17.5568V16.7614H36.6392V17.5568H31.9517Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Phase</div>
+</div>
+<div class=processing-card data-id=delay data-index=4>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.2038 38.1118C11.5382 40.1615 13.309 41.6667 15.3858 41.6667V41.6667C17.4842 41.6667 19.2666 40.1308 19.5766 38.0554L23.529 11.5946C23.8089 9.72037 25.4185 8.33337 27.3135 8.33337V8.33337C29.1187 8.33337 30.6784 9.59505 31.0555 11.3604L33.6667 23.5834" stroke=white stroke-width=2 />
+<path d="M16 23.5834L18.3705 38.1118C18.7049 40.1615 20.4756 41.6667 22.5524 41.6667V41.6667C24.6509 41.6667 26.4332 40.1308 26.7432 38.0554L30.6956 11.5946C30.9756 9.72037 32.5851 8.33337 34.4801 8.33337V8.33337C36.2854 8.33337 37.845 9.59505 38.2222 11.3604L40.8333 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Delay</div>
+</div>
+</div>
+<div class=channel-separator>
+<hr>
+</div>
+<div class=channel-fader>
+<div class=fader-label>
+<div class="label text-bold output">3</div>
+<div class=label id=gain-channel-4>0.0</div>
+</div>
+<div class=fader-content>
+<div class=meter-holder>
+<div class=meter-scale>
+<div>Peak</div>
+<div>[ - 10 ]</div>
+<div>[ - 20 ]</div>
+<div>[ - 30 ]</div>
+<div>[ - 35 ]</div>
+<div>[ - 40 ]</div>
+<div>[ - 50 ]</div>
+<div>[ - 60 ]</div>
+</div>
+<div class=meter-background></div>
+<div class=meter-value id=vu-channel-4></div>
+</div>
+<div class=fader-holder>
+<input class=fader-slider type=range data-index=4 id=fader-channel-4 min=-15 max=15 step=0.2 value=0>
+</div>
+</div>
+<button type=button class=mute-button data-index=4 id=mute-channel-4>Mute</button>
+</div>
+</div>
+<div class=channel>
+<div class=channel-processing>
+<div class=processing-card data-id=routing data-index=5>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<mask id=path-1-inside-1_4_4 fill=white>
+<path fill-rule=evenodd clip-rule=evenodd d="M41.6667 1.66667H8.33333C4.65144 1.66667 1.66667 4.65144 1.66667 8.33333V41.6667C1.66667 45.3486 4.65144 48.3333 8.33333 48.3333H41.6667C45.3486 48.3333 48.3333 45.3486 48.3333 41.6667V8.33333C48.3333 4.65144 45.3486 1.66667 41.6667 1.66667ZM8.33333 0C3.73096 0 0 3.73096 0 8.33333V41.6667C0 46.269 3.73096 50 8.33333 50H41.6667C46.269 50 50 46.269 50 41.6667V8.33333C50 3.73096 46.269 0 41.6667 0H8.33333Z"/>
+</mask>
+<path d="M8.33333 3.66667H41.6667V-0.333333H8.33333V3.66667ZM3.66667 8.33333C3.66667 5.75601 5.75601 3.66667 8.33333 3.66667V-0.333333C3.54687 -0.333333 -0.333333 3.54687 -0.333333 8.33333H3.66667ZM3.66667 41.6667V8.33333H-0.333333V41.6667H3.66667ZM8.33333 46.3333C5.756 46.3333 3.66667 44.244 3.66667 41.6667H-0.333333C-0.333333 46.4531 3.54687 50.3333 8.33333 50.3333V46.3333ZM41.6667 46.3333H8.33333V50.3333H41.6667V46.3333ZM46.3333 41.6667C46.3333 44.244 44.244 46.3333 41.6667 46.3333V50.3333C46.4531 50.3333 50.3333 46.4531 50.3333 41.6667H46.3333ZM46.3333 8.33333V41.6667H50.3333V8.33333H46.3333ZM41.6667 3.66667C44.244 3.66667 46.3333 5.75601 46.3333 8.33333H50.3333C50.3333 3.54687 46.4531 -0.333333 41.6667 -0.333333V3.66667ZM2 8.33333C2 4.83553 4.83553 2 8.33333 2V-2C2.62639 -2 -2 2.62639 -2 8.33333H2ZM2 41.6667V8.33333H-2V41.6667H2ZM8.33333 48C4.83553 48 2 45.1645 2 41.6667H-2C-2 47.3736 2.62639 52 8.33333 52V48ZM41.6667 48H8.33333V52H41.6667V48ZM48 41.6667C48 45.1645 45.1645 48 41.6667 48V52C47.3736 52 52 47.3736 52 41.6667H48ZM48 8.33333V41.6667H52V8.33333H48ZM41.6667 2C45.1645 2 48 4.83553 48 8.33333H52C52 2.62639 47.3736 -2 41.6667 -2V2ZM8.33333 2H41.6667V-2H8.33333V2Z" fill=white mask=url(#path-1-inside-1_4_4) />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.134 35.4167H8.49959V37.0833H21.134C21.524 39.1396 23.3307 40.6944 25.5004 40.6944C27.955 40.6944 29.9449 38.7046 29.9449 36.25C29.9449 33.7954 27.955 31.8056 25.5004 31.8056C23.3307 31.8056 21.524 33.3604 21.134 35.4167Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.1344 13.6667H8.5V15.3333H21.1344C21.5245 17.3896 23.3311 18.9444 25.5008 18.9444C27.9554 18.9444 29.9453 16.9546 29.9453 14.5C29.9453 12.0454 27.9554 10.0556 25.5008 10.0556C23.3311 10.0556 21.5245 11.6104 21.1344 13.6667Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M29.8597 24.5059L42.4941 24.5059V26.1726L29.8597 26.1726C29.4696 28.2289 27.663 29.7837 25.4932 29.7837C23.0386 29.7837 21.0488 27.7939 21.0488 25.3393C21.0488 22.8847 23.0386 20.8948 25.4932 20.8948C27.663 20.8948 29.4696 22.4497 29.8597 24.5059Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M27.0833 6.9998L27.0833 43.5002H23.75L23.75 6.9998H27.0833Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Routing</div>
+</div>
+<div class=processing-card data-id=crossover data-index=5>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M9.5 12.8333V12.8333C16.9769 12.8333 23.9169 16.7176 27.8269 23.0907L38.9167 41.1667" stroke=white stroke-width=2 />
+<path d="M40.5833 12.8333V12.8333C33.1064 12.8333 26.1664 16.7176 22.2565 23.0907L11.1667 41.1667" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Crossover</div>
+</div>
+<div class=processing-card data-id=equalizer data-index=5>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 28.5335 20.589 33.6789V33.6789C21.9583 37.9913 28.0909 38.0229 29.4171 33.697V33.697C31.0016 28.5286 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 21.4665 20.589 16.3211V16.3211C21.9583 12.0087 28.0909 11.9771 29.4171 16.303V16.303C31.0016 21.4714 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Equalizer</div>
+</div>
+<div class=processing-card data-id=dynamic data-index=5>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=7.37602 y1=42.5431 x2=42.0431 y2=7.87601 stroke=white stroke-width=2 />
+<line x1=26 y1=25 x2=41.8333 y2=25 stroke=white stroke-width=2 stroke-linecap=round />
+<line x1=26.8016 y1=23.9989 x2=41.9947 y2=16.6984 stroke=white stroke-width=2 stroke-linecap=round />
+</svg>
+</div>
+<div class=processing-name>Dynamic</div>
+</div>
+<div class=processing-card data-id=phase data-index=5>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.7812 36.91C12.3958 39.6887 14.8592 41.6667 17.705 41.6667V41.6667C20.5916 41.6667 23.0785 39.6329 23.6514 36.8038L28.5203 12.76C29.0418 10.1847 31.3056 8.33337 33.9331 8.33337V8.33337C36.3916 8.33337 38.554 9.95839 39.2379 12.3198L42.5 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+<path d="M19.5587 31.9915V32.7727H16.3769V31.9915H19.5587Z" fill=white />
+<path d="M33.8977 19.5028V14.8153H34.6932V19.5028H33.8977ZM31.9517 17.5568V16.7614H36.6392V17.5568H31.9517Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Phase</div>
+</div>
+<div class=processing-card data-id=delay data-index=5>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.2038 38.1118C11.5382 40.1615 13.309 41.6667 15.3858 41.6667V41.6667C17.4842 41.6667 19.2666 40.1308 19.5766 38.0554L23.529 11.5946C23.8089 9.72037 25.4185 8.33337 27.3135 8.33337V8.33337C29.1187 8.33337 30.6784 9.59505 31.0555 11.3604L33.6667 23.5834" stroke=white stroke-width=2 />
+<path d="M16 23.5834L18.3705 38.1118C18.7049 40.1615 20.4756 41.6667 22.5524 41.6667V41.6667C24.6509 41.6667 26.4332 40.1308 26.7432 38.0554L30.6956 11.5946C30.9756 9.72037 32.5851 8.33337 34.4801 8.33337V8.33337C36.2854 8.33337 37.845 9.59505 38.2222 11.3604L40.8333 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Delay</div>
+</div>
+</div>
+<div class=channel-separator>
+<hr>
+</div>
+<div class=channel-fader>
+<div class=fader-label>
+<div class="label text-bold output">4</div>
+<div class=label id=gain-channel-5>0.0</div>
+</div>
+<div class=fader-content>
+<div class=meter-holder>
+<div class=meter-scale>
+<div>Peak</div>
+<div>[ - 10 ]</div>
+<div>[ - 20 ]</div>
+<div>[ - 30 ]</div>
+<div>[ - 35 ]</div>
+<div>[ - 40 ]</div>
+<div>[ - 50 ]</div>
+<div>[ - 60 ]</div>
+</div>
+<div class=meter-background></div>
+<div class=meter-value id=vu-channel-5></div>
+</div>
+<div class=fader-holder>
+<input class=fader-slider type=range data-index=5 id=fader-channel-5 min=-15 max=15 step=0.2 value=0>
+</div>
+</div>
+<button type=button class=mute-button data-index=5 id=mute-channel-5>Mute</button>
+</div>
+</div>
+<div class=channel>
+<div class=channel-processing>
+<div class=processing-card data-id=routing data-index=6>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<mask id=path-1-inside-1_4_4 fill=white>
+<path fill-rule=evenodd clip-rule=evenodd d="M41.6667 1.66667H8.33333C4.65144 1.66667 1.66667 4.65144 1.66667 8.33333V41.6667C1.66667 45.3486 4.65144 48.3333 8.33333 48.3333H41.6667C45.3486 48.3333 48.3333 45.3486 48.3333 41.6667V8.33333C48.3333 4.65144 45.3486 1.66667 41.6667 1.66667ZM8.33333 0C3.73096 0 0 3.73096 0 8.33333V41.6667C0 46.269 3.73096 50 8.33333 50H41.6667C46.269 50 50 46.269 50 41.6667V8.33333C50 3.73096 46.269 0 41.6667 0H8.33333Z"/>
+</mask>
+<path d="M8.33333 3.66667H41.6667V-0.333333H8.33333V3.66667ZM3.66667 8.33333C3.66667 5.75601 5.75601 3.66667 8.33333 3.66667V-0.333333C3.54687 -0.333333 -0.333333 3.54687 -0.333333 8.33333H3.66667ZM3.66667 41.6667V8.33333H-0.333333V41.6667H3.66667ZM8.33333 46.3333C5.756 46.3333 3.66667 44.244 3.66667 41.6667H-0.333333C-0.333333 46.4531 3.54687 50.3333 8.33333 50.3333V46.3333ZM41.6667 46.3333H8.33333V50.3333H41.6667V46.3333ZM46.3333 41.6667C46.3333 44.244 44.244 46.3333 41.6667 46.3333V50.3333C46.4531 50.3333 50.3333 46.4531 50.3333 41.6667H46.3333ZM46.3333 8.33333V41.6667H50.3333V8.33333H46.3333ZM41.6667 3.66667C44.244 3.66667 46.3333 5.75601 46.3333 8.33333H50.3333C50.3333 3.54687 46.4531 -0.333333 41.6667 -0.333333V3.66667ZM2 8.33333C2 4.83553 4.83553 2 8.33333 2V-2C2.62639 -2 -2 2.62639 -2 8.33333H2ZM2 41.6667V8.33333H-2V41.6667H2ZM8.33333 48C4.83553 48 2 45.1645 2 41.6667H-2C-2 47.3736 2.62639 52 8.33333 52V48ZM41.6667 48H8.33333V52H41.6667V48ZM48 41.6667C48 45.1645 45.1645 48 41.6667 48V52C47.3736 52 52 47.3736 52 41.6667H48ZM48 8.33333V41.6667H52V8.33333H48ZM41.6667 2C45.1645 2 48 4.83553 48 8.33333H52C52 2.62639 47.3736 -2 41.6667 -2V2ZM8.33333 2H41.6667V-2H8.33333V2Z" fill=white mask=url(#path-1-inside-1_4_4) />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.134 35.4167H8.49959V37.0833H21.134C21.524 39.1396 23.3307 40.6944 25.5004 40.6944C27.955 40.6944 29.9449 38.7046 29.9449 36.25C29.9449 33.7954 27.955 31.8056 25.5004 31.8056C23.3307 31.8056 21.524 33.3604 21.134 35.4167Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.1344 13.6667H8.5V15.3333H21.1344C21.5245 17.3896 23.3311 18.9444 25.5008 18.9444C27.9554 18.9444 29.9453 16.9546 29.9453 14.5C29.9453 12.0454 27.9554 10.0556 25.5008 10.0556C23.3311 10.0556 21.5245 11.6104 21.1344 13.6667Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M29.8597 24.5059L42.4941 24.5059V26.1726L29.8597 26.1726C29.4696 28.2289 27.663 29.7837 25.4932 29.7837C23.0386 29.7837 21.0488 27.7939 21.0488 25.3393C21.0488 22.8847 23.0386 20.8948 25.4932 20.8948C27.663 20.8948 29.4696 22.4497 29.8597 24.5059Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M27.0833 6.9998L27.0833 43.5002H23.75L23.75 6.9998H27.0833Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Routing</div>
+</div>
+<div class=processing-card data-id=crossover data-index=6>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M9.5 12.8333V12.8333C16.9769 12.8333 23.9169 16.7176 27.8269 23.0907L38.9167 41.1667" stroke=white stroke-width=2 />
+<path d="M40.5833 12.8333V12.8333C33.1064 12.8333 26.1664 16.7176 22.2565 23.0907L11.1667 41.1667" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Crossover</div>
+</div>
+<div class=processing-card data-id=equalizer data-index=6>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 28.5335 20.589 33.6789V33.6789C21.9583 37.9913 28.0909 38.0229 29.4171 33.697V33.697C31.0016 28.5286 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 21.4665 20.589 16.3211V16.3211C21.9583 12.0087 28.0909 11.9771 29.4171 16.303V16.303C31.0016 21.4714 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Equalizer</div>
+</div>
+<div class=processing-card data-id=dynamic data-index=6>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=7.37602 y1=42.5431 x2=42.0431 y2=7.87601 stroke=white stroke-width=2 />
+<line x1=26 y1=25 x2=41.8333 y2=25 stroke=white stroke-width=2 stroke-linecap=round />
+<line x1=26.8016 y1=23.9989 x2=41.9947 y2=16.6984 stroke=white stroke-width=2 stroke-linecap=round />
+</svg>
+</div>
+<div class=processing-name>Dynamic</div>
+</div>
+<div class=processing-card data-id=phase data-index=6>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.7812 36.91C12.3958 39.6887 14.8592 41.6667 17.705 41.6667V41.6667C20.5916 41.6667 23.0785 39.6329 23.6514 36.8038L28.5203 12.76C29.0418 10.1847 31.3056 8.33337 33.9331 8.33337V8.33337C36.3916 8.33337 38.554 9.95839 39.2379 12.3198L42.5 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+<path d="M19.5587 31.9915V32.7727H16.3769V31.9915H19.5587Z" fill=white />
+<path d="M33.8977 19.5028V14.8153H34.6932V19.5028H33.8977ZM31.9517 17.5568V16.7614H36.6392V17.5568H31.9517Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Phase</div>
+</div>
+<div class=processing-card data-id=delay data-index=6>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.2038 38.1118C11.5382 40.1615 13.309 41.6667 15.3858 41.6667V41.6667C17.4842 41.6667 19.2666 40.1308 19.5766 38.0554L23.529 11.5946C23.8089 9.72037 25.4185 8.33337 27.3135 8.33337V8.33337C29.1187 8.33337 30.6784 9.59505 31.0555 11.3604L33.6667 23.5834" stroke=white stroke-width=2 />
+<path d="M16 23.5834L18.3705 38.1118C18.7049 40.1615 20.4756 41.6667 22.5524 41.6667V41.6667C24.6509 41.6667 26.4332 40.1308 26.7432 38.0554L30.6956 11.5946C30.9756 9.72037 32.5851 8.33337 34.4801 8.33337V8.33337C36.2854 8.33337 37.845 9.59505 38.2222 11.3604L40.8333 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Delay</div>
+</div>
+</div>
+<div class=channel-separator>
+<hr>
+</div>
+<div class=channel-fader>
+<div class=fader-label>
+<div class="label text-bold output">5</div>
+<div class=label id=gain-channel-6>0.0</div>
+</div>
+<div class=fader-content>
+<div class=meter-holder>
+<div class=meter-scale>
+<div>Peak</div>
+<div>[ - 10 ]</div>
+<div>[ - 20 ]</div>
+<div>[ - 30 ]</div>
+<div>[ - 35 ]</div>
+<div>[ - 40 ]</div>
+<div>[ - 50 ]</div>
+<div>[ - 60 ]</div>
+</div>
+<div class=meter-background></div>
+<div class=meter-value id=vu-channel-6></div>
+</div>
+<div class=fader-holder>
+<input class=fader-slider type=range data-index=6 id=fader-channel-6 min=-15 max=15 step=0.2 value=0>
+</div>
+</div>
+<button type=button class=mute-button data-index=6 id=mute-channel-6>Mute</button>
+</div>
+</div>
+<div class=channel>
+<div class=channel-processing>
+<div class=processing-card data-id=routing data-index=7>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<mask id=path-1-inside-1_4_4 fill=white>
+<path fill-rule=evenodd clip-rule=evenodd d="M41.6667 1.66667H8.33333C4.65144 1.66667 1.66667 4.65144 1.66667 8.33333V41.6667C1.66667 45.3486 4.65144 48.3333 8.33333 48.3333H41.6667C45.3486 48.3333 48.3333 45.3486 48.3333 41.6667V8.33333C48.3333 4.65144 45.3486 1.66667 41.6667 1.66667ZM8.33333 0C3.73096 0 0 3.73096 0 8.33333V41.6667C0 46.269 3.73096 50 8.33333 50H41.6667C46.269 50 50 46.269 50 41.6667V8.33333C50 3.73096 46.269 0 41.6667 0H8.33333Z"/>
+</mask>
+<path d="M8.33333 3.66667H41.6667V-0.333333H8.33333V3.66667ZM3.66667 8.33333C3.66667 5.75601 5.75601 3.66667 8.33333 3.66667V-0.333333C3.54687 -0.333333 -0.333333 3.54687 -0.333333 8.33333H3.66667ZM3.66667 41.6667V8.33333H-0.333333V41.6667H3.66667ZM8.33333 46.3333C5.756 46.3333 3.66667 44.244 3.66667 41.6667H-0.333333C-0.333333 46.4531 3.54687 50.3333 8.33333 50.3333V46.3333ZM41.6667 46.3333H8.33333V50.3333H41.6667V46.3333ZM46.3333 41.6667C46.3333 44.244 44.244 46.3333 41.6667 46.3333V50.3333C46.4531 50.3333 50.3333 46.4531 50.3333 41.6667H46.3333ZM46.3333 8.33333V41.6667H50.3333V8.33333H46.3333ZM41.6667 3.66667C44.244 3.66667 46.3333 5.75601 46.3333 8.33333H50.3333C50.3333 3.54687 46.4531 -0.333333 41.6667 -0.333333V3.66667ZM2 8.33333C2 4.83553 4.83553 2 8.33333 2V-2C2.62639 -2 -2 2.62639 -2 8.33333H2ZM2 41.6667V8.33333H-2V41.6667H2ZM8.33333 48C4.83553 48 2 45.1645 2 41.6667H-2C-2 47.3736 2.62639 52 8.33333 52V48ZM41.6667 48H8.33333V52H41.6667V48ZM48 41.6667C48 45.1645 45.1645 48 41.6667 48V52C47.3736 52 52 47.3736 52 41.6667H48ZM48 8.33333V41.6667H52V8.33333H48ZM41.6667 2C45.1645 2 48 4.83553 48 8.33333H52C52 2.62639 47.3736 -2 41.6667 -2V2ZM8.33333 2H41.6667V-2H8.33333V2Z" fill=white mask=url(#path-1-inside-1_4_4) />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.134 35.4167H8.49959V37.0833H21.134C21.524 39.1396 23.3307 40.6944 25.5004 40.6944C27.955 40.6944 29.9449 38.7046 29.9449 36.25C29.9449 33.7954 27.955 31.8056 25.5004 31.8056C23.3307 31.8056 21.524 33.3604 21.134 35.4167Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.1344 13.6667H8.5V15.3333H21.1344C21.5245 17.3896 23.3311 18.9444 25.5008 18.9444C27.9554 18.9444 29.9453 16.9546 29.9453 14.5C29.9453 12.0454 27.9554 10.0556 25.5008 10.0556C23.3311 10.0556 21.5245 11.6104 21.1344 13.6667Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M29.8597 24.5059L42.4941 24.5059V26.1726L29.8597 26.1726C29.4696 28.2289 27.663 29.7837 25.4932 29.7837C23.0386 29.7837 21.0488 27.7939 21.0488 25.3393C21.0488 22.8847 23.0386 20.8948 25.4932 20.8948C27.663 20.8948 29.4696 22.4497 29.8597 24.5059Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M27.0833 6.9998L27.0833 43.5002H23.75L23.75 6.9998H27.0833Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Routing</div>
+</div>
+<div class=processing-card data-id=crossover data-index=7>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M9.5 12.8333V12.8333C16.9769 12.8333 23.9169 16.7176 27.8269 23.0907L38.9167 41.1667" stroke=white stroke-width=2 />
+<path d="M40.5833 12.8333V12.8333C33.1064 12.8333 26.1664 16.7176 22.2565 23.0907L11.1667 41.1667" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Crossover</div>
+</div>
+<div class=processing-card data-id=equalizer data-index=7>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 28.5335 20.589 33.6789V33.6789C21.9583 37.9913 28.0909 38.0229 29.4171 33.697V33.697C31.0016 28.5286 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 21.4665 20.589 16.3211V16.3211C21.9583 12.0087 28.0909 11.9771 29.4171 16.303V16.303C31.0016 21.4714 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Equalizer</div>
+</div>
+<div class=processing-card data-id=dynamic data-index=7>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=7.37602 y1=42.5431 x2=42.0431 y2=7.87601 stroke=white stroke-width=2 />
+<line x1=26 y1=25 x2=41.8333 y2=25 stroke=white stroke-width=2 stroke-linecap=round />
+<line x1=26.8016 y1=23.9989 x2=41.9947 y2=16.6984 stroke=white stroke-width=2 stroke-linecap=round />
+</svg>
+</div>
+<div class=processing-name>Dynamic</div>
+</div>
+<div class=processing-card data-id=phase data-index=7>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.7812 36.91C12.3958 39.6887 14.8592 41.6667 17.705 41.6667V41.6667C20.5916 41.6667 23.0785 39.6329 23.6514 36.8038L28.5203 12.76C29.0418 10.1847 31.3056 8.33337 33.9331 8.33337V8.33337C36.3916 8.33337 38.554 9.95839 39.2379 12.3198L42.5 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+<path d="M19.5587 31.9915V32.7727H16.3769V31.9915H19.5587Z" fill=white />
+<path d="M33.8977 19.5028V14.8153H34.6932V19.5028H33.8977ZM31.9517 17.5568V16.7614H36.6392V17.5568H31.9517Z" fill=white />
+</svg>
+</div>
+<div class=processing-name>Phase</div>
+</div>
+<div class=processing-card data-id=delay data-index=7>
+<div class=processing-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.2038 38.1118C11.5382 40.1615 13.309 41.6667 15.3858 41.6667V41.6667C17.4842 41.6667 19.2666 40.1308 19.5766 38.0554L23.529 11.5946C23.8089 9.72037 25.4185 8.33337 27.3135 8.33337V8.33337C29.1187 8.33337 30.6784 9.59505 31.0555 11.3604L33.6667 23.5834" stroke=white stroke-width=2 />
+<path d="M16 23.5834L18.3705 38.1118C18.7049 40.1615 20.4756 41.6667 22.5524 41.6667V41.6667C24.6509 41.6667 26.4332 40.1308 26.7432 38.0554L30.6956 11.5946C30.9756 9.72037 32.5851 8.33337 34.4801 8.33337V8.33337C36.2854 8.33337 37.845 9.59505 38.2222 11.3604L40.8333 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=processing-name>Delay</div>
+</div>
+</div>
+<div class=channel-separator>
+<hr>
+</div>
+<div class=channel-fader>
+<div class=fader-label>
+<div class="label text-bold output">6</div>
+<div class=label id=gain-channel-7>0.0</div>
+</div>
+<div class=fader-content>
+<div class=meter-holder>
+<div class=meter-scale>
+<div>Peak</div>
+<div>[ - 10 ]</div>
+<div>[ - 20 ]</div>
+<div>[ - 30 ]</div>
+<div>[ - 35 ]</div>
+<div>[ - 40 ]</div>
+<div>[ - 50 ]</div>
+<div>[ - 60 ]</div>
+</div>
+<div class=meter-background></div>
+<div class=meter-value id=vu-channel-7></div>
+</div>
+<div class=fader-holder>
+<input class=fader-slider type=range data-index=7 id=fader-channel-7 min=-15 max=15 step=0.2 value=0>
+</div>
+</div>
+<button type=button class=mute-button data-index=7 id=mute-channel-7>Mute</button>
+</div>
+</div>
+<div class=menu>
+<div class=menu-card data-id=full_screen>
+<div class=menu-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M40.1924 11C40.1924 10.4477 39.7447 9.99999 39.1924 9.99999L30.1924 9.99999C29.6401 9.99999 29.1924 10.4477 29.1924 11C29.1924 11.5523 29.6401 12 30.1924 12L38.1924 12L38.1924 20C38.1924 20.5523 38.6401 21 39.1924 21C39.7447 21 40.1924 20.5523 40.1924 20L40.1924 11ZM30.7071 20.8995L39.8995 11.7071L38.4853 10.2929L29.2929 19.4853L30.7071 20.8995Z" fill=white />
+<path d="M9.99999 11C9.99999 10.4477 10.4477 9.99999 11 9.99999L20 9.99999C20.5523 9.99999 21 10.4477 21 11C21 11.5523 20.5523 12 20 12L12 12L12 20C12 20.5523 11.5523 21 11 21C10.4477 21 9.99999 20.5523 9.99999 20L9.99999 11ZM19.4853 20.8995L10.2929 11.7071L11.7071 10.2929L20.8995 19.4853L19.4853 20.8995Z" fill=white />
+<path d="M39.1924 39.1924C39.7447 39.1924 40.1924 38.7447 40.1924 38.1924L40.1924 29.1924C40.1924 28.6401 39.7447 28.1924 39.1924 28.1924C38.6401 28.1924 38.1924 28.6401 38.1924 29.1924L38.1924 37.1924L30.1924 37.1924C29.6401 37.1924 29.1924 37.6401 29.1924 38.1924C29.1924 38.7447 29.6401 39.1924 30.1924 39.1924L39.1924 39.1924ZM29.2929 29.7071L38.4853 38.8995L39.8995 37.4853L30.7071 28.2929L29.2929 29.7071Z" fill=white />
+<path d="M11 39.1924C10.4477 39.1924 9.99999 38.7447 9.99999 38.1924L9.99999 29.1924C9.99999 28.6401 10.4477 28.1924 11 28.1924C11.5523 28.1924 12 28.6401 12 29.1924L12 37.1924L20 37.1924C20.5523 37.1924 21 37.6401 21 38.1924C21 38.7447 20.5523 39.1924 20 39.1924L11 39.1924ZM20.8995 29.7071L11.7071 38.8995L10.2929 37.4853L19.4853 28.2929L20.8995 29.7071Z" fill=white />
+</svg>
+</div>
+<div class=menu-name>Full Screen</div>
+</div>
+<div class=menu-card data-id=save>
+<div class=menu-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<rect x=9 y=12 width=32 height=26 rx=4 stroke=white stroke-width=2 />
+<path d="M8 18H23L26.5 12.5" stroke=white stroke-width=2 />
+<path d="M32 24V31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M35 28L32 31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M29 28L32 31" stroke=white stroke-width=2 stroke-linecap=round />
+</svg>
+</div>
+<div class=menu-name>Save</div>
+</div>
+<div class=menu-card data-id=saveas>
+<div class=menu-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<rect x=9 y=12 width=32 height=26 rx=4 stroke=white stroke-width=2 />
+<path d="M8 18H23L26.5 12.5" stroke=white stroke-width=2 />
+<path d="M32 24V31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M35 28L32 31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M29 28L32 31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M26.5909 25.1818L26.6591 23.3068L25.0739 24.3125L24.6648 23.5966L26.3352 22.7273L24.6648 21.858L25.0739 21.142L26.6591 22.1477L26.5909 20.2727H27.4091L27.3409 22.1477L28.9261 21.142L29.3352 21.858L27.6648 22.7273L29.3352 23.5966L28.9261 24.3125L27.3409 23.3068L27.4091 25.1818H26.5909Z" fill=white />
+</svg>
+</div>
+<div class=menu-name>Save As</div>
+</div>
+<div class=menu-card data-id=file>
+<div class=menu-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<rect x=9 y=12 width=32 height=26 rx=4 stroke=white stroke-width=2 />
+<path d="M8 18H23L26.5 12.5" stroke=white stroke-width=2 />
+<path d="M32.3672 33L33.9183 23.5455H35.3956L33.8445 33H32.3672ZM28.1339 30.6548L28.3786 29.1776H35.7649L35.5202 30.6548H28.1339ZM29.0433 33L30.5945 23.5455H32.0717L30.5206 33H29.0433ZM28.674 27.3679L28.9233 25.8906H36.3097L36.0604 27.3679H28.674Z" fill=white />
+</svg>
+</div>
+<div class=menu-name>File Manager</div>
+</div>
+<div class=menu-card data-id=banner>
+<div class=menu-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=9 y1=15 x2=42 y2=15 stroke=white stroke-width=2 />
+<line x1=9 y1=35 x2=42 y2=35 stroke=white stroke-width=2 />
+<path d="M18.5774 22.8189C18.549 22.5324 18.4271 22.3099 18.2116 22.1513C17.9962 21.9927 17.7038 21.9134 17.3345 21.9134C17.0836 21.9134 16.8717 21.9489 16.6989 22.0199C16.526 22.0885 16.3935 22.1844 16.3011 22.3075C16.2112 22.4306 16.1662 22.5703 16.1662 22.7266C16.1615 22.8568 16.1887 22.9704 16.2479 23.0675C16.3094 23.1645 16.3935 23.2486 16.5 23.3196C16.6065 23.3883 16.7296 23.4486 16.8693 23.5007C17.009 23.5504 17.1581 23.593 17.3168 23.6286L17.9702 23.7848C18.2874 23.8558 18.5786 23.9505 18.8438 24.0689C19.1089 24.1873 19.3385 24.3329 19.5327 24.5057C19.7268 24.6785 19.8771 24.8821 19.9837 25.1165C20.0926 25.3509 20.1482 25.6196 20.1506 25.9226C20.1482 26.3677 20.0346 26.7536 19.8097 27.0803C19.5871 27.4046 19.2652 27.6567 18.8438 27.8366C18.4247 28.0142 17.9193 28.103 17.3274 28.103C16.7403 28.103 16.2289 28.013 15.7933 27.8331C15.3601 27.6532 15.0215 27.3868 14.7777 27.0341C14.5362 26.679 14.4096 26.2398 14.3977 25.7166H15.8857C15.9022 25.9605 15.9721 26.1641 16.0952 26.3274C16.2206 26.4884 16.3875 26.6103 16.5959 26.6932C16.8066 26.7737 17.0445 26.8139 17.3097 26.8139C17.5701 26.8139 17.7962 26.776 17.9879 26.7003C18.1821 26.6245 18.3324 26.5192 18.4389 26.3842C18.5455 26.2493 18.5987 26.0942 18.5987 25.919C18.5987 25.7557 18.5502 25.6184 18.4531 25.5071C18.3584 25.3958 18.2188 25.3011 18.0341 25.223C17.8518 25.1449 17.6281 25.0739 17.3629 25.0099L16.571 24.8111C15.9579 24.6619 15.4737 24.4287 15.1186 24.1115C14.7635 23.7943 14.5871 23.367 14.5895 22.8295C14.5871 22.3892 14.7043 22.0045 14.9411 21.6754C15.1802 21.3464 15.508 21.0895 15.9247 20.9048C16.3414 20.7202 16.8149 20.6278 17.3452 20.6278C17.8849 20.6278 18.3561 20.7202 18.7585 20.9048C19.1634 21.0895 19.4782 21.3464 19.7031 21.6754C19.928 22.0045 20.044 22.3857 20.0511 22.8189H18.5774ZM21.1564 28V22.5455H22.6692V28H21.1564ZM21.9164 21.8423C21.6915 21.8423 21.4985 21.7678 21.3375 21.6186C21.1789 21.4671 21.0996 21.286 21.0996 21.0753C21.0996 20.867 21.1789 20.6882 21.3375 20.5391C21.4985 20.3875 21.6915 20.3118 21.9164 20.3118C22.1413 20.3118 22.333 20.3875 22.4917 20.5391C22.6526 20.6882 22.7331 20.867 22.7331 21.0753C22.7331 21.286 22.6526 21.4671 22.4917 21.6186C22.333 21.7678 22.1413 21.8423 21.9164 21.8423ZM26.3384 30.1591C25.8484 30.1591 25.4281 30.0916 25.0778 29.9567C24.7298 29.8241 24.4528 29.643 24.2468 29.4134C24.0408 29.1837 23.9071 28.9257 23.8455 28.6392L25.2447 28.451C25.2873 28.5599 25.3548 28.6617 25.4471 28.7564C25.5394 28.8511 25.6613 28.9268 25.8129 28.9837C25.9667 29.0429 26.1538 29.0724 26.3739 29.0724C26.703 29.0724 26.9741 28.992 27.1871 28.831C27.4026 28.6723 27.5103 28.406 27.5103 28.032V27.0341H27.4464C27.3801 27.1856 27.2807 27.3288 27.1481 27.4638C27.0155 27.5987 26.8451 27.7088 26.6367 27.794C26.4284 27.8793 26.1798 27.9219 25.891 27.9219C25.4814 27.9219 25.1085 27.8272 24.7724 27.6378C24.4386 27.446 24.1722 27.1536 23.9734 26.7607C23.7769 26.3653 23.6786 25.8658 23.6786 25.2621C23.6786 24.6442 23.7792 24.1281 23.9805 23.7138C24.1817 23.2995 24.4492 22.9893 24.783 22.7834C25.1192 22.5774 25.4873 22.4744 25.8874 22.4744C26.1928 22.4744 26.4485 22.5265 26.6545 22.6307C26.8604 22.7325 27.0262 22.8603 27.1516 23.0142C27.2795 23.1657 27.3777 23.3149 27.4464 23.4616H27.5032V22.5455H29.0053V28.0533C29.0053 28.5173 28.8917 28.9055 28.6644 29.218C28.4371 29.5305 28.1223 29.7649 27.7198 29.9212C27.3197 30.0798 26.8593 30.1591 26.3384 30.1591ZM26.3704 26.7855C26.6142 26.7855 26.8202 26.7251 26.9883 26.6044C27.1587 26.4813 27.2889 26.3061 27.3789 26.0788C27.4712 25.8492 27.5174 25.5746 27.5174 25.255C27.5174 24.9354 27.4724 24.6584 27.3825 24.424C27.2925 24.1873 27.1623 24.0038 26.9918 23.8736C26.8214 23.7434 26.6142 23.6783 26.3704 23.6783C26.1218 23.6783 25.9123 23.7457 25.7418 23.8807C25.5714 24.0133 25.4424 24.1979 25.3548 24.4347C25.2672 24.6714 25.2234 24.9448 25.2234 25.255C25.2234 25.5698 25.2672 25.8421 25.3548 26.0717C25.4447 26.299 25.5737 26.4754 25.7418 26.6009C25.9123 26.724 26.1218 26.7855 26.3704 26.7855ZM31.7219 24.8466V28H30.2092V22.5455H31.6509V23.5078H31.7148C31.8356 23.1906 32.038 22.9396 32.3221 22.755C32.6062 22.5679 32.9506 22.4744 33.3555 22.4744C33.7343 22.4744 34.0645 22.5573 34.3462 22.723C34.628 22.8887 34.8469 23.1255 35.0032 23.4332C35.1594 23.7386 35.2376 24.1032 35.2376 24.527V28H33.7248V24.7969C33.7272 24.4631 33.6419 24.2027 33.4691 24.0156C33.2963 23.8262 33.0584 23.7315 32.7553 23.7315C32.5517 23.7315 32.3718 23.7753 32.2156 23.8629C32.0617 23.9505 31.9409 24.0784 31.8533 24.2464C31.7681 24.4122 31.7243 24.6122 31.7219 24.8466Z" fill=white />
+</svg>
+</div>
+<div class=menu-name>Create Banner</div>
+</div>
+<div class=menu-card data-id=info>
+<div class=menu-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=19 y1=36.5 x2=33 y2=36.5 stroke=white stroke-width=3 />
+<line x1=26 y1=18 x2=26 y2=38 stroke=white stroke-width=4 />
+<line x1=21 y1=19.5 x2=27 y2=19.5 stroke=white stroke-width=3 />
+<circle cx=25.5 cy=12.5 r=2.5 fill=white />
+</svg>
+</div>
+<div class=menu-name>System Info</div>
+</div>
+<div class=menu-spacer></div>
+<div class=menu-footer>
+DIY Tech Engineering
+</div>
+</div>
+</div>
+<div class=modal id=modal-equalizer>
+<div class=modal-card>
+<div class=modal-header>
+<div class=modal-icon data-id=equalizer id=equalizer-modal-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 28.5335 20.589 33.6789V33.6789C21.9583 37.9913 28.0909 38.0229 29.4171 33.697V33.697C31.0016 28.5286 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+<path d="M6.16667 25H8.76742C14.166 25 18.9553 21.4665 20.589 16.3211V16.3211C21.9583 12.0087 28.0909 11.9771 29.4171 16.303V16.303C31.0016 21.4714 35.7741 25 41.1799 25H44" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=modal-title>
+<span id=modal-equalizer-title></span>
+<span>- Equalizer</span>
+</div>
+<div class=modal-close data-id=equalizer>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-x-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>
+</div>
+</div>
+<div class=modal-content>
+<div class=dsp-screen>
+<div class=screen-control>
+<div id=screen-control-item-0>
+<span style=color:var(--graph1)>Eq1</span>
+</div>
+<div id=screen-control-item-1>
+<span style=color:var(--graph2)>Eq2</span>
+</div>
+<div id=screen-control-item-2>
+<span style=color:var(--graph3)>Eq3</span>
+</div>
+<div id=screen-control-item-3>
+<span style=color:var(--graph4)>Eq4</span>
+</div>
+<div id=screen-control-item-4>
+<span style=color:var(--graph5)>Eq5</span>
+</div>
+<div id=screen-control-item-5>
+<span style=color:var(--graph6)>Eq6</span>
+</div>
+</div>
+<div class=screen-canvas>
+<canvas id=equalizer-screen></canvas>
+</div>
+</div>
+<div class=dsp-control>
+<div class=dsp-select>
+<button type=button class=dsp-select-item id=equalizer-select-0 data-id=equalizer data-index=0>1</button>
+<button type=button class=dsp-select-item id=equalizer-select-1 data-id=equalizer data-index=1>2</button>
+<button type=button class=dsp-select-item id=equalizer-select-2 data-id=equalizer data-index=2>3</button>
+<button type=button class=dsp-select-item id=equalizer-select-3 data-id=equalizer data-index=3>4</button>
+<button type=button class=dsp-select-item id=equalizer-select-4 data-id=equalizer data-index=4>5</button>
+<button type=button class=dsp-select-item id=equalizer-select-5 data-id=equalizer data-index=5>6</button>
+</div>
+<div class=dsp-slider-info>
+<span>Frequency</span>
+<div>
+<span id=equalizer-frequency>1000</span>
+<span>Hz</span>
+</div>
+</div>
+<input class=dsp-slider id=equalizer-frequency-control type=range data-id=equalizer data-parameter=frequency min=20 max=20000 step=1>
+<div class=dsp-slider-info>
+<span>Boost</span>
+<div>
+<span id=equalizer-boost>0</span>
+<span>dB</span>
+</div>
+</div>
+<input class=dsp-slider id=equalizer-boost-control type=range data-id=equalizer data-parameter=boost min=-15 max=15 step=0.1>
+<div class=dsp-slider-info>
+<span>Bandwidth</span>
+<span id=equalizer-bandwidth>1.41</span>
+</div>
+<input class=dsp-slider id=equalizer-bandwidth-control type=range data-id=equalizer data-parameter=bandwidth min=0.2 max=16 step=0.01>
+<select class=dsp-dropdown data-id=equalizer id=equalizer-type-control>
+<option value=0>Peaking</option>
+<option value=1>Low Shelf</option>
+<option value=2>High Shelf</option>
+<option value=3>Notch</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div class=modal id=modal-routing style=display:none>
+<div class="modal-card modal-card-small">
+<div class=modal-header>
+<div class=modal-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<mask id=path-1-inside-1_4_4 fill=white>
+<path fill-rule=evenodd clip-rule=evenodd d="M41.6667 1.66667H8.33333C4.65144 1.66667 1.66667 4.65144 1.66667 8.33333V41.6667C1.66667 45.3486 4.65144 48.3333 8.33333 48.3333H41.6667C45.3486 48.3333 48.3333 45.3486 48.3333 41.6667V8.33333C48.3333 4.65144 45.3486 1.66667 41.6667 1.66667ZM8.33333 0C3.73096 0 0 3.73096 0 8.33333V41.6667C0 46.269 3.73096 50 8.33333 50H41.6667C46.269 50 50 46.269 50 41.6667V8.33333C50 3.73096 46.269 0 41.6667 0H8.33333Z"/>
+</mask>
+<path d="M8.33333 3.66667H41.6667V-0.333333H8.33333V3.66667ZM3.66667 8.33333C3.66667 5.75601 5.75601 3.66667 8.33333 3.66667V-0.333333C3.54687 -0.333333 -0.333333 3.54687 -0.333333 8.33333H3.66667ZM3.66667 41.6667V8.33333H-0.333333V41.6667H3.66667ZM8.33333 46.3333C5.756 46.3333 3.66667 44.244 3.66667 41.6667H-0.333333C-0.333333 46.4531 3.54687 50.3333 8.33333 50.3333V46.3333ZM41.6667 46.3333H8.33333V50.3333H41.6667V46.3333ZM46.3333 41.6667C46.3333 44.244 44.244 46.3333 41.6667 46.3333V50.3333C46.4531 50.3333 50.3333 46.4531 50.3333 41.6667H46.3333ZM46.3333 8.33333V41.6667H50.3333V8.33333H46.3333ZM41.6667 3.66667C44.244 3.66667 46.3333 5.75601 46.3333 8.33333H50.3333C50.3333 3.54687 46.4531 -0.333333 41.6667 -0.333333V3.66667ZM2 8.33333C2 4.83553 4.83553 2 8.33333 2V-2C2.62639 -2 -2 2.62639 -2 8.33333H2ZM2 41.6667V8.33333H-2V41.6667H2ZM8.33333 48C4.83553 48 2 45.1645 2 41.6667H-2C-2 47.3736 2.62639 52 8.33333 52V48ZM41.6667 48H8.33333V52H41.6667V48ZM48 41.6667C48 45.1645 45.1645 48 41.6667 48V52C47.3736 52 52 47.3736 52 41.6667H48ZM48 8.33333V41.6667H52V8.33333H48ZM41.6667 2C45.1645 2 48 4.83553 48 8.33333H52C52 2.62639 47.3736 -2 41.6667 -2V2ZM8.33333 2H41.6667V-2H8.33333V2Z" fill=white mask=url(#path-1-inside-1_4_4) />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.134 35.4167H8.49959V37.0833H21.134C21.524 39.1396 23.3307 40.6944 25.5004 40.6944C27.955 40.6944 29.9449 38.7046 29.9449 36.25C29.9449 33.7954 27.955 31.8056 25.5004 31.8056C23.3307 31.8056 21.524 33.3604 21.134 35.4167Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M21.1344 13.6667H8.5V15.3333H21.1344C21.5245 17.3896 23.3311 18.9444 25.5008 18.9444C27.9554 18.9444 29.9453 16.9546 29.9453 14.5C29.9453 12.0454 27.9554 10.0556 25.5008 10.0556C23.3311 10.0556 21.5245 11.6104 21.1344 13.6667Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M29.8597 24.5059L42.4941 24.5059V26.1726L29.8597 26.1726C29.4696 28.2289 27.663 29.7837 25.4932 29.7837C23.0386 29.7837 21.0488 27.7939 21.0488 25.3393C21.0488 22.8847 23.0386 20.8948 25.4932 20.8948C27.663 20.8948 29.4696 22.4497 29.8597 24.5059Z" fill=white />
+<path fill-rule=evenodd clip-rule=evenodd d="M27.0833 6.9998L27.0833 43.5002H23.75L23.75 6.9998H27.0833Z" fill=white />
+</svg>
+</div>
+<div class=modal-title>
+<span id=modal-routing-title>Output 1</span>
+<span>- Routing</span>
+</div>
+<div class=modal-close data-id=routing>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-x-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>
+</div>
+</div>
+<div class=modal-content>
+<div class=dsp-select>
+<button type=button class=dsp-select-item id=routing-select-0 data-id=routing data-index=0>A</button>
+<button type=button class=dsp-select-item id=routing-select-1 data-id=routing data-index=1>B</button>
+<button type=button class=dsp-select-item id=routing-select-2 data-id=routing data-index=2>Mix</button>
+</div>
+</div>
+</div>
+</div>
+<div class=modal id=modal-crossover>
+<div class=modal-card>
+<div class=modal-header>
+<div class=modal-icon data-id=crossover id=crossover-modal-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M9.5 12.8333V12.8333C16.9769 12.8333 23.9169 16.7176 27.8269 23.0907L38.9167 41.1667" stroke=white stroke-width=2 />
+<path d="M40.5833 12.8333V12.8333C33.1064 12.8333 26.1664 16.7176 22.2565 23.0907L11.1667 41.1667" stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=modal-title>
+<span id=modal-crossover-title>Output 1</span>
+<span>- Crossover</span>
+</div>
+<div class=modal-close data-id=crossover>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-x-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>
+</div>
+</div>
+<div class=modal-content>
+<div class=dsp-screen>
+<div class=screen-control>
+<div class=screen-control-item>
+<span><input type=checkbox class=screen-control-checkbox data-id=crossover data-index=0 id=crossover-control-0></span>
+<span class=screen-control-label style=color:var(--graph1)>1</span>
+</div>
+<div class=screen-control-item>
+<span><input type=checkbox class=screen-control-checkbox data-id=crossover data-index=1 id=crossover-control-1></span>
+<span class=screen-control-label style=color:var(--graph2)>2</span>
+</div>
+<div class=screen-control-item>
+<span><input type=checkbox class=screen-control-checkbox data-id=crossover data-index=2 id=crossover-control-2></span>
+<span class=screen-control-label style=color:var(--graph3)>3</span>
+</div>
+<div class=screen-control-item>
+<span><input type=checkbox class=screen-control-checkbox data-id=crossover data-index=3 id=crossover-control-3></span>
+<span class=screen-control-label style=color:var(--graph4)>4</span>
+</div>
+<div class=screen-control-item>
+<span><input type=checkbox class=screen-control-checkbox data-id=crossover data-index=4 id=crossover-control-4></span>
+<span class=screen-control-label style=color:var(--graph5)>5</span>
+</div>
+<div class=screen-control-item>
+<span><input type=checkbox class=screen-control-checkbox data-id=crossover data-index=5 id=crossover-control-5></span>
+<span class=screen-control-label style=color:var(--graph6)>6</span>
+</div>
+</div>
+<div class=screen-canvas>
+<canvas id=crossover-screen></canvas>
+</div>
+</div>
+<div class=dsp-control>
+<div class=dsp-select>
+<button type=button class=dsp-select-item id=crossover-select-0 data-id=crossover data-index=0>High Pass</button>
+<button type=button class=dsp-select-item id=crossover-select-1 data-id=crossover data-index=1>Low Pass</button>
+</div>
+<div class=dsp-slider-info>
+<span>Frequency</span>
+<div>
+<span id=crossover-frequency>1000</span>
+<span>Hz</span>
+</div>
+</div>
+<input class=dsp-slider type=range data-id=crossover data-parameter=frequency id=crossover-frequency-control min=20 max=20000 step=1>
+<select class=dsp-dropdown data-id=crossover id=crossover-type-control>
+<option value=0>Linkwitz-Riley 12</option>
+<option value=1>Linkwitz-Riley 24</option>
+<option value=2>Linkwitz-Riley 36</option>
+<option value=3>Linkwitz-Riley 48</option>
+<option value=4>Butteworth 12</option>
+<option value=5>Butteworth 18</option>
+<option value=6>Butteworth 24</option>
+<option value=7>Bessel 12</option>
+<option value=8>Bessel 18</option>
+<option value=9>Bessel 24</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<div class=modal id=modal-dynamic>
+<div class=modal-card>
+<div class=modal-header>
+<div class=modal-icon data-id=dynamic id=dynamic-modal-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=7.37602 y1=42.5431 x2=42.0431 y2=7.87601 stroke=white stroke-width=2 />
+<line x1=26 y1=25 x2=41.8333 y2=25 stroke=white stroke-width=2 stroke-linecap=round />
+<line x1=26.8016 y1=23.9989 x2=41.9947 y2=16.6984 stroke=white stroke-width=2 stroke-linecap=round />
+</svg>
+</div>
+<div class=modal-title>
+<span id=modal-dynamic-title>Output 1</span>
+<span>- Dynamic</span>
+</div>
+<div class=modal-close data-id=dynamic>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-x-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>
+</div>
+</div>
+<div class=modal-content>
+<div class=fader-content>
+<div class=meter-holder>
+<div class=meter-scale>
+<div>Peak</div>
+<div>[ - 10 ]</div>
+<div>[ - 20 ]</div>
+<div>[ - 30 ]</div>
+<div>[ - 35 ]</div>
+<div>[ - 40 ]</div>
+<div>[ - 50 ]</div>
+<div>[ - 60 ]</div>
+</div>
+<div class=meter-background></div>
+<div class="meter-value meter-dynamic" id=vu-dynamic></div>
+</div>
+</div>
+<div class=dynamic-screen>
+<canvas id=dynamic-screen></canvas>
+</div>
+<div class=dsp-control>
+<div class=dsp-select>
+<button type=button class=dsp-select-item id=dynamic-select-0 data-id=dynamic data-index=0>Gate</button>
+<button type=button class=dsp-select-item id=dynamic-select-1 data-id=dynamic data-index=1>Compressor</button>
+</div>
+<div class=dsp-slider-info>
+<span>Treshold</span>
+<div>
+<span id=dynamic-treshold>-43.1</span>
+<span>dB</span>
+</div>
+</div>
+<input class=dsp-slider type=range data-id=dynamic data-parameter=treshold id=dynamic-treshold-control min=-93 max=6 step=3>
+<div class=dsp-slider-info>
+<span id=dynamic-range-ratio>Ratio</span>
+<div>
+<span id=dynamic-range>32</span>
+<span id=dynamic-range-scale>%</span>
+</div>
+</div>
+<input class=dsp-slider type=range data-id=dynamic data-parameter=range id=dynamic-range-control min=1 max=100 step=0.2>
+<div class=dsp-slider-info>
+<span>Attack</span>
+<div>
+<span id=dynamic-attack>200</span>
+<span>mS</span>
+</div>
+</div>
+<input class=dsp-slider type=range data-id=dynamic data-parameter=attack id=dynamic-attack-control min=1 max=500 step=1>
+<div class=dsp-slider-info>
+<span>Hold</span>
+<div>
+<span id=dynamic-hold>200</span>
+<span>mS</span>
+</div>
+</div>
+<input class=dsp-slider type=range data-id=dynamic data-parameter=hold id=dynamic-hold-control min=1 max=500 step=1>
+<div class=dsp-slider-info>
+<span>Release</span>
+<div>
+<span id=dynamic-release>500</span>
+<span>mS</span>
+</div>
+</div>
+<input class=dsp-slider type=range data-id=dynamic data-parameter=release id=dynamic-release-control min=1 max=2000 step=1>
+</div>
+</div>
+</div>
+</div>
+<div class=modal id=modal-phase style=display:none>
+<div class="modal-card modal-card-small">
+<div class=modal-header>
+<div class=modal-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.7812 36.91C12.3958 39.6887 14.8592 41.6667 17.705 41.6667V41.6667C20.5916 41.6667 23.0785 39.6329 23.6514 36.8038L28.5203 12.76C29.0418 10.1847 31.3056 8.33337 33.9331 8.33337V8.33337C36.3916 8.33337 38.554 9.95839 39.2379 12.3198L42.5 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+<path d="M19.5587 31.9915V32.7727H16.3769V31.9915H19.5587Z" fill=white />
+<path d="M33.8977 19.5028V14.8153H34.6932V19.5028H33.8977ZM31.9517 17.5568V16.7614H36.6392V17.5568H31.9517Z" fill=white />
+</svg>
+</div>
+<div class=modal-title>
+<span id=modal-phase-title>Output 1</span>
+<span>- Phase</span>
+</div>
+<div class=modal-close data-id=phase>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-x-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>
+</div>
+</div>
+<div class=modal-content>
+<div class=dsp-select>
+<button type=button class=dsp-select-item id=phase-select-0 data-id=phase data-index=0>Linear</button>
+<button type=button class=dsp-select-item id=phase-select-1 data-id=phase data-index=1>Invert</button>
+</div>
+</div>
+</div>
+</div>
+<div class=modal id=modal-delay style=display:none>
+<div class="modal-card modal-card-small">
+<div class=modal-header>
+<div class=modal-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<path d="M8.83334 23.5834L11.2038 38.1118C11.5382 40.1615 13.309 41.6667 15.3858 41.6667V41.6667C17.4842 41.6667 19.2666 40.1308 19.5766 38.0554L23.529 11.5946C23.8089 9.72037 25.4185 8.33337 27.3135 8.33337V8.33337C29.1187 8.33337 30.6784 9.59505 31.0555 11.3604L33.6667 23.5834" stroke=white stroke-width=2 />
+<path d="M16 23.5834L18.3705 38.1118C18.7049 40.1615 20.4756 41.6667 22.5524 41.6667V41.6667C24.6509 41.6667 26.4332 40.1308 26.7432 38.0554L30.6956 11.5946C30.9756 9.72037 32.5851 8.33337 34.4801 8.33337V8.33337C36.2854 8.33337 37.845 9.59505 38.2222 11.3604L40.8333 23.5834" stroke=white stroke-width=2 />
+<line x1=4.66666 y1=23.8334 x2=45.5085 y2=23.8334 stroke=white stroke-width=2 />
+</svg>
+</div>
+<div class=modal-title>
+<span id=modal-delay-title>Output 1</span>
+<span>- Delay</span>
+</div>
+<div class=modal-close data-id=delay>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-x-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>
+</div>
+</div>
+<div class=modal-content>
+<div class=dsp-control>
+<div class=dsp-slider-info>
+<span>Delay</span>
+<div>
+<span id=delay-value>1000</span>
+<span>mS</span>
+</div>
+</div>
+<input class=dsp-slider type=range data-id=delay data-parameter=value id=delay-value-control min=0 max=10000 step=1>
+<div>
+<span>Sekitar :</span>
+<span id=delay-meter>0.12</span>
+<span>meter</span>
+</div>
+<div class=info style=display:none>
+<div class=info-header>
+<span>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+<path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.15.15 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.2.2 0 0 1-.054.06.1.1 0 0 1-.066.017H1.146a.1.1 0 0 1-.066-.017.2.2 0 0 1-.054-.06.18.18 0 0 1 .002-.183L7.884 2.073a.15.15 0 0 1 .054-.057m1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767z"/>
+<path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+</svg>
+</span>
+<span>Warning</span>
+<span>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-exclamation-triangle" viewBox="0 0 16 16">
+<path d="M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.15.15 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.2.2 0 0 1-.054.06.1.1 0 0 1-.066.017H1.146a.1.1 0 0 1-.066-.017.2.2 0 0 1-.054-.06.18.18 0 0 1 .002-.183L7.884 2.073a.15.15 0 0 1 .054-.057m1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767z"/>
+<path d="M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+</svg>
+</span>
+</div>
+<div class=info-content>
+<span>Output 5 dan 6 memiliki konfigurasi delay yang sedikit berbeda sehingga memiliki latensi yang berbeda juga jika dibandingkan dengan output 1 sampai 4</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class=modal id=modal-loading style=display:none>
+<div class="modal-card modal-card-small">
+<div class=modal-header>
+<div class="modal-icon loading-icon" id=save-icon style=display:none>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<rect x=9 y=12 width=32 height=26 rx=4 stroke=white stroke-width=2 />
+<path d="M8 18H23L26.5 12.5" stroke=white stroke-width=2 />
+<path d="M32 24V31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M35 28L32 31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M29 28L32 31" stroke=white stroke-width=2 stroke-linecap=round />
+</svg>
+</div>
+<div class="modal-icon loading-icon" id=saveas-icon style=display:none>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<rect x=9 y=12 width=32 height=26 rx=4 stroke=white stroke-width=2 />
+<path d="M8 18H23L26.5 12.5" stroke=white stroke-width=2 />
+<path d="M32 24V31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M35 28L32 31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M29 28L32 31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M26.5909 25.1818L26.6591 23.3068L25.0739 24.3125L24.6648 23.5966L26.3352 22.7273L24.6648 21.858L25.0739 21.142L26.6591 22.1477L26.5909 20.2727H27.4091L27.3409 22.1477L28.9261 21.142L29.3352 21.858L27.6648 22.7273L29.3352 23.5966L28.9261 24.3125L27.3409 23.3068L27.4091 25.1818H26.5909Z" fill=white />
+</svg>
+</div>
+<div class="modal-icon loading-icon" id=file-icon style=display:none>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<rect x=9 y=12 width=32 height=26 rx=4 stroke=white stroke-width=2 />
+<path d="M8 18H23L26.5 12.5" stroke=white stroke-width=2 />
+<path d="M32.3672 33L33.9183 23.5455H35.3956L33.8445 33H32.3672ZM28.1339 30.6548L28.3786 29.1776H35.7649L35.5202 30.6548H28.1339ZM29.0433 33L30.5945 23.5455H32.0717L30.5206 33H29.0433ZM28.674 27.3679L28.9233 25.8906H36.3097L36.0604 27.3679H28.674Z" fill=white />
+</svg>
+</div>
+<div class="modal-icon loading-icon" id=banner-icon style=display:none>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=9 y1=15 x2=42 y2=15 stroke=white stroke-width=2 />
+<line x1=9 y1=35 x2=42 y2=35 stroke=white stroke-width=2 />
+<path d="M18.5774 22.8189C18.549 22.5324 18.4271 22.3099 18.2116 22.1513C17.9962 21.9927 17.7038 21.9134 17.3345 21.9134C17.0836 21.9134 16.8717 21.9489 16.6989 22.0199C16.526 22.0885 16.3935 22.1844 16.3011 22.3075C16.2112 22.4306 16.1662 22.5703 16.1662 22.7266C16.1615 22.8568 16.1887 22.9704 16.2479 23.0675C16.3094 23.1645 16.3935 23.2486 16.5 23.3196C16.6065 23.3883 16.7296 23.4486 16.8693 23.5007C17.009 23.5504 17.1581 23.593 17.3168 23.6286L17.9702 23.7848C18.2874 23.8558 18.5786 23.9505 18.8438 24.0689C19.1089 24.1873 19.3385 24.3329 19.5327 24.5057C19.7268 24.6785 19.8771 24.8821 19.9837 25.1165C20.0926 25.3509 20.1482 25.6196 20.1506 25.9226C20.1482 26.3677 20.0346 26.7536 19.8097 27.0803C19.5871 27.4046 19.2652 27.6567 18.8438 27.8366C18.4247 28.0142 17.9193 28.103 17.3274 28.103C16.7403 28.103 16.2289 28.013 15.7933 27.8331C15.3601 27.6532 15.0215 27.3868 14.7777 27.0341C14.5362 26.679 14.4096 26.2398 14.3977 25.7166H15.8857C15.9022 25.9605 15.9721 26.1641 16.0952 26.3274C16.2206 26.4884 16.3875 26.6103 16.5959 26.6932C16.8066 26.7737 17.0445 26.8139 17.3097 26.8139C17.5701 26.8139 17.7962 26.776 17.9879 26.7003C18.1821 26.6245 18.3324 26.5192 18.4389 26.3842C18.5455 26.2493 18.5987 26.0942 18.5987 25.919C18.5987 25.7557 18.5502 25.6184 18.4531 25.5071C18.3584 25.3958 18.2188 25.3011 18.0341 25.223C17.8518 25.1449 17.6281 25.0739 17.3629 25.0099L16.571 24.8111C15.9579 24.6619 15.4737 24.4287 15.1186 24.1115C14.7635 23.7943 14.5871 23.367 14.5895 22.8295C14.5871 22.3892 14.7043 22.0045 14.9411 21.6754C15.1802 21.3464 15.508 21.0895 15.9247 20.9048C16.3414 20.7202 16.8149 20.6278 17.3452 20.6278C17.8849 20.6278 18.3561 20.7202 18.7585 20.9048C19.1634 21.0895 19.4782 21.3464 19.7031 21.6754C19.928 22.0045 20.044 22.3857 20.0511 22.8189H18.5774ZM21.1564 28V22.5455H22.6692V28H21.1564ZM21.9164 21.8423C21.6915 21.8423 21.4985 21.7678 21.3375 21.6186C21.1789 21.4671 21.0996 21.286 21.0996 21.0753C21.0996 20.867 21.1789 20.6882 21.3375 20.5391C21.4985 20.3875 21.6915 20.3118 21.9164 20.3118C22.1413 20.3118 22.333 20.3875 22.4917 20.5391C22.6526 20.6882 22.7331 20.867 22.7331 21.0753C22.7331 21.286 22.6526 21.4671 22.4917 21.6186C22.333 21.7678 22.1413 21.8423 21.9164 21.8423ZM26.3384 30.1591C25.8484 30.1591 25.4281 30.0916 25.0778 29.9567C24.7298 29.8241 24.4528 29.643 24.2468 29.4134C24.0408 29.1837 23.9071 28.9257 23.8455 28.6392L25.2447 28.451C25.2873 28.5599 25.3548 28.6617 25.4471 28.7564C25.5394 28.8511 25.6613 28.9268 25.8129 28.9837C25.9667 29.0429 26.1538 29.0724 26.3739 29.0724C26.703 29.0724 26.9741 28.992 27.1871 28.831C27.4026 28.6723 27.5103 28.406 27.5103 28.032V27.0341H27.4464C27.3801 27.1856 27.2807 27.3288 27.1481 27.4638C27.0155 27.5987 26.8451 27.7088 26.6367 27.794C26.4284 27.8793 26.1798 27.9219 25.891 27.9219C25.4814 27.9219 25.1085 27.8272 24.7724 27.6378C24.4386 27.446 24.1722 27.1536 23.9734 26.7607C23.7769 26.3653 23.6786 25.8658 23.6786 25.2621C23.6786 24.6442 23.7792 24.1281 23.9805 23.7138C24.1817 23.2995 24.4492 22.9893 24.783 22.7834C25.1192 22.5774 25.4873 22.4744 25.8874 22.4744C26.1928 22.4744 26.4485 22.5265 26.6545 22.6307C26.8604 22.7325 27.0262 22.8603 27.1516 23.0142C27.2795 23.1657 27.3777 23.3149 27.4464 23.4616H27.5032V22.5455H29.0053V28.0533C29.0053 28.5173 28.8917 28.9055 28.6644 29.218C28.4371 29.5305 28.1223 29.7649 27.7198 29.9212C27.3197 30.0798 26.8593 30.1591 26.3384 30.1591ZM26.3704 26.7855C26.6142 26.7855 26.8202 26.7251 26.9883 26.6044C27.1587 26.4813 27.2889 26.3061 27.3789 26.0788C27.4712 25.8492 27.5174 25.5746 27.5174 25.255C27.5174 24.9354 27.4724 24.6584 27.3825 24.424C27.2925 24.1873 27.1623 24.0038 26.9918 23.8736C26.8214 23.7434 26.6142 23.6783 26.3704 23.6783C26.1218 23.6783 25.9123 23.7457 25.7418 23.8807C25.5714 24.0133 25.4424 24.1979 25.3548 24.4347C25.2672 24.6714 25.2234 24.9448 25.2234 25.255C25.2234 25.5698 25.2672 25.8421 25.3548 26.0717C25.4447 26.299 25.5737 26.4754 25.7418 26.6009C25.9123 26.724 26.1218 26.7855 26.3704 26.7855ZM31.7219 24.8466V28H30.2092V22.5455H31.6509V23.5078H31.7148C31.8356 23.1906 32.038 22.9396 32.3221 22.755C32.6062 22.5679 32.9506 22.4744 33.3555 22.4744C33.7343 22.4744 34.0645 22.5573 34.3462 22.723C34.628 22.8887 34.8469 23.1255 35.0032 23.4332C35.1594 23.7386 35.2376 24.1032 35.2376 24.527V28H33.7248V24.7969C33.7272 24.4631 33.6419 24.2027 33.4691 24.0156C33.2963 23.8262 33.0584 23.7315 32.7553 23.7315C32.5517 23.7315 32.3718 23.7753 32.2156 23.8629C32.0617 23.9505 31.9409 24.0784 31.8533 24.2464C31.7681 24.4122 31.7243 24.6122 31.7219 24.8466Z" fill=white />
+</svg>
+</div>
+<div class="modal-icon loading-icon" id=system-icon style=display:none>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=19 y1=36.5 x2=33 y2=36.5 stroke=white stroke-width=3 />
+<line x1=26 y1=18 x2=26 y2=38 stroke=white stroke-width=4 />
+<line x1=21 y1=19.5 x2=27 y2=19.5 stroke=white stroke-width=3 />
+<circle cx=25.5 cy=12.5 r=2.5 fill=white />
+</svg>
+</div>
+<div class=modal-title>
+<span id=modal-loading-title>Save</span>
+<span>- Loading</span>
+</div>
+<div class=modal-close data-id=loading>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-x-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>
+</div>
+</div>
+<div class=modal-content>
+<div id=socket-spinner class=spinner></div>
+</div>
+</div>
+</div>
+<div class=modal id=modal-saveas>
+<div class="modal-card modal-card-small">
+<div class=modal-header>
+<div class=modal-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<rect x=9 y=12 width=32 height=26 rx=4 stroke=white stroke-width=2 />
+<path d="M8 18H23L26.5 12.5" stroke=white stroke-width=2 />
+<path d="M32 24V31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M35 28L32 31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M29 28L32 31" stroke=white stroke-width=2 stroke-linecap=round />
+<path d="M26.5909 25.1818L26.6591 23.3068L25.0739 24.3125L24.6648 23.5966L26.3352 22.7273L24.6648 21.858L25.0739 21.142L26.6591 22.1477L26.5909 20.2727H27.4091L27.3409 22.1477L28.9261 21.142L29.3352 21.858L27.6648 22.7273L29.3352 23.5966L28.9261 24.3125L27.3409 23.3068L27.4091 25.1818H26.5909Z" fill=white />
+</svg>
+</div>
+<div class=modal-title>Save As</div>
+<div class=modal-close data-id=saveas>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-x-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>
+</div>
+</div>
+<div class=saveas-container>
+<input class=saveas-name id=saveas-name maxlength=15 placeholder="Nama File ...">
+<button class=btn-saveas id=btn-saveas>Save</button>
+</div>
+</div>
+</div>
+<div class=modal id=modal-file>
+<div class="modal-card modal-card-small">
+<div class=modal-header>
+<div class=modal-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<rect x=9 y=12 width=32 height=26 rx=4 stroke=white stroke-width=2 />
+<path d="M8 18H23L26.5 12.5" stroke=white stroke-width=2 />
+<path d="M32.3672 33L33.9183 23.5455H35.3956L33.8445 33H32.3672ZM28.1339 30.6548L28.3786 29.1776H35.7649L35.5202 30.6548H28.1339ZM29.0433 33L30.5945 23.5455H32.0717L30.5206 33H29.0433ZM28.674 27.3679L28.9233 25.8906H36.3097L36.0604 27.3679H28.674Z" fill=white />
+</svg>
+</div>
+<div class=modal-title>File Manager</div>
+<div class=modal-close data-id=file>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-x-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>
+</div>
+</div>
+<div class=file-content>
+</div>
+</div>
+</div>
+<div class=modal id=modal-banner>
+<div class="modal-card modal-card-small">
+<div class=modal-header>
+<div class=modal-icon>
+<svg width=50 height=50 viewBox="0 0 50 50" fill=none xmlns=http://www.w3.org/2000/svg>
+<rect x=1 y=1 width=48 height=48 rx=11 stroke=white stroke-width=2 />
+<line x1=9 y1=15 x2=42 y2=15 stroke=white stroke-width=2 />
+<line x1=9 y1=35 x2=42 y2=35 stroke=white stroke-width=2 />
+<path d="M18.5774 22.8189C18.549 22.5324 18.4271 22.3099 18.2116 22.1513C17.9962 21.9927 17.7038 21.9134 17.3345 21.9134C17.0836 21.9134 16.8717 21.9489 16.6989 22.0199C16.526 22.0885 16.3935 22.1844 16.3011 22.3075C16.2112 22.4306 16.1662 22.5703 16.1662 22.7266C16.1615 22.8568 16.1887 22.9704 16.2479 23.0675C16.3094 23.1645 16.3935 23.2486 16.5 23.3196C16.6065 23.3883 16.7296 23.4486 16.8693 23.5007C17.009 23.5504 17.1581 23.593 17.3168 23.6286L17.9702 23.7848C18.2874 23.8558 18.5786 23.9505 18.8438 24.0689C19.1089 24.1873 19.3385 24.3329 19.5327 24.5057C19.7268 24.6785 19.8771 24.8821 19.9837 25.1165C20.0926 25.3509 20.1482 25.6196 20.1506 25.9226C20.1482 26.3677 20.0346 26.7536 19.8097 27.0803C19.5871 27.4046 19.2652 27.6567 18.8438 27.8366C18.4247 28.0142 17.9193 28.103 17.3274 28.103C16.7403 28.103 16.2289 28.013 15.7933 27.8331C15.3601 27.6532 15.0215 27.3868 14.7777 27.0341C14.5362 26.679 14.4096 26.2398 14.3977 25.7166H15.8857C15.9022 25.9605 15.9721 26.1641 16.0952 26.3274C16.2206 26.4884 16.3875 26.6103 16.5959 26.6932C16.8066 26.7737 17.0445 26.8139 17.3097 26.8139C17.5701 26.8139 17.7962 26.776 17.9879 26.7003C18.1821 26.6245 18.3324 26.5192 18.4389 26.3842C18.5455 26.2493 18.5987 26.0942 18.5987 25.919C18.5987 25.7557 18.5502 25.6184 18.4531 25.5071C18.3584 25.3958 18.2188 25.3011 18.0341 25.223C17.8518 25.1449 17.6281 25.0739 17.3629 25.0099L16.571 24.8111C15.9579 24.6619 15.4737 24.4287 15.1186 24.1115C14.7635 23.7943 14.5871 23.367 14.5895 22.8295C14.5871 22.3892 14.7043 22.0045 14.9411 21.6754C15.1802 21.3464 15.508 21.0895 15.9247 20.9048C16.3414 20.7202 16.8149 20.6278 17.3452 20.6278C17.8849 20.6278 18.3561 20.7202 18.7585 20.9048C19.1634 21.0895 19.4782 21.3464 19.7031 21.6754C19.928 22.0045 20.044 22.3857 20.0511 22.8189H18.5774ZM21.1564 28V22.5455H22.6692V28H21.1564ZM21.9164 21.8423C21.6915 21.8423 21.4985 21.7678 21.3375 21.6186C21.1789 21.4671 21.0996 21.286 21.0996 21.0753C21.0996 20.867 21.1789 20.6882 21.3375 20.5391C21.4985 20.3875 21.6915 20.3118 21.9164 20.3118C22.1413 20.3118 22.333 20.3875 22.4917 20.5391C22.6526 20.6882 22.7331 20.867 22.7331 21.0753C22.7331 21.286 22.6526 21.4671 22.4917 21.6186C22.333 21.7678 22.1413 21.8423 21.9164 21.8423ZM26.3384 30.1591C25.8484 30.1591 25.4281 30.0916 25.0778 29.9567C24.7298 29.8241 24.4528 29.643 24.2468 29.4134C24.0408 29.1837 23.9071 28.9257 23.8455 28.6392L25.2447 28.451C25.2873 28.5599 25.3548 28.6617 25.4471 28.7564C25.5394 28.8511 25.6613 28.9268 25.8129 28.9837C25.9667 29.0429 26.1538 29.0724 26.3739 29.0724C26.703 29.0724 26.9741 28.992 27.1871 28.831C27.4026 28.6723 27.5103 28.406 27.5103 28.032V27.0341H27.4464C27.3801 27.1856 27.2807 27.3288 27.1481 27.4638C27.0155 27.5987 26.8451 27.7088 26.6367 27.794C26.4284 27.8793 26.1798 27.9219 25.891 27.9219C25.4814 27.9219 25.1085 27.8272 24.7724 27.6378C24.4386 27.446 24.1722 27.1536 23.9734 26.7607C23.7769 26.3653 23.6786 25.8658 23.6786 25.2621C23.6786 24.6442 23.7792 24.1281 23.9805 23.7138C24.1817 23.2995 24.4492 22.9893 24.783 22.7834C25.1192 22.5774 25.4873 22.4744 25.8874 22.4744C26.1928 22.4744 26.4485 22.5265 26.6545 22.6307C26.8604 22.7325 27.0262 22.8603 27.1516 23.0142C27.2795 23.1657 27.3777 23.3149 27.4464 23.4616H27.5032V22.5455H29.0053V28.0533C29.0053 28.5173 28.8917 28.9055 28.6644 29.218C28.4371 29.5305 28.1223 29.7649 27.7198 29.9212C27.3197 30.0798 26.8593 30.1591 26.3384 30.1591ZM26.3704 26.7855C26.6142 26.7855 26.8202 26.7251 26.9883 26.6044C27.1587 26.4813 27.2889 26.3061 27.3789 26.0788C27.4712 25.8492 27.5174 25.5746 27.5174 25.255C27.5174 24.9354 27.4724 24.6584 27.3825 24.424C27.2925 24.1873 27.1623 24.0038 26.9918 23.8736C26.8214 23.7434 26.6142 23.6783 26.3704 23.6783C26.1218 23.6783 25.9123 23.7457 25.7418 23.8807C25.5714 24.0133 25.4424 24.1979 25.3548 24.4347C25.2672 24.6714 25.2234 24.9448 25.2234 25.255C25.2234 25.5698 25.2672 25.8421 25.3548 26.0717C25.4447 26.299 25.5737 26.4754 25.7418 26.6009C25.9123 26.724 26.1218 26.7855 26.3704 26.7855ZM31.7219 24.8466V28H30.2092V22.5455H31.6509V23.5078H31.7148C31.8356 23.1906 32.038 22.9396 32.3221 22.755C32.6062 22.5679 32.9506 22.4744 33.3555 22.4744C33.7343 22.4744 34.0645 22.5573 34.3462 22.723C34.628 22.8887 34.8469 23.1255 35.0032 23.4332C35.1594 23.7386 35.2376 24.1032 35.2376 24.527V28H33.7248V24.7969C33.7272 24.4631 33.6419 24.2027 33.4691 24.0156C33.2963 23.8262 33.0584 23.7315 32.7553 23.7315C32.5517 23.7315 32.3718 23.7753 32.2156 23.8629C32.0617 23.9505 31.9409 24.0784 31.8533 24.2464C31.7681 24.4122 31.7243 24.6122 31.7219 24.8466Z" fill=white />
+</svg>
+</div>
+<div class=modal-title>Banner Creator</div>
+<div class=modal-close data-id=banner>
+<svg xmlns=http://www.w3.org/2000/svg width=16 height=16 fill=currentColor class="bi bi-x-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+</svg>
+</div>
+</div>
+<div class=modal-banner-container>
+<div class=banner-container>
+<input class=banner-input id=banner-1 maxlength=1>
+<input class=banner-input id=banner-2 maxlength=1>
+<input class=banner-input id=banner-3 maxlength=1>
+<input class=banner-input id=banner-4 maxlength=1>
+<input class=banner-input id=banner-5 maxlength=1>
+<input class=banner-input id=banner-6 maxlength=1>
+<input class=banner-input id=banner-7 maxlength=1>
+<input class=banner-input id=banner-8 maxlength=1>
+<input class=banner-input id=banner-9 maxlength=1>
+<input class=banner-input id=banner-10 maxlength=1>
+<input class=banner-input id=banner-11 maxlength=1>
+<input class=banner-input id=banner-12 maxlength=1>
+<input class=banner-input id=banner-13 maxlength=1>
+<input class=banner-input id=banner-14 maxlength=1>
+<input class=banner-input id=banner-15 maxlength=1>
+<input class=banner-input id=banner-16 maxlength=1>
+<input class=banner-input id=banner-17 maxlength=1>
+<input class=banner-input id=banner-18 maxlength=1>
+<input class=banner-input id=banner-19 maxlength=1>
+<input class=banner-input id=banner-20 maxlength=1>
+<input class=banner-input id=banner-21 maxlength=1>
+<input class=banner-input id=banner-22 maxlength=1>
+<input class=banner-input id=banner-23 maxlength=1>
+<input class=banner-input id=banner-24 maxlength=1>
+<input class=banner-input id=banner-25 maxlength=1>
+<input class=banner-input id=banner-26 maxlength=1>
+<input class=banner-input id=banner-27 maxlength=1>
+<input class=banner-input id=banner-28 maxlength=1>
+<input class=banner-input id=banner-29 maxlength=1>
+<input class=banner-input id=banner-30 maxlength=1>
+<input class=banner-input id=banner-31 maxlength=1>
+<input class=banner-input id=banner-32 maxlength=1>
+</div>
+<button class=btn-banner id=btn-banner>Save</button>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src=https://cdn.jsdelivr.net/npm/chart.js></script>
+<script src=data.js></script>
+<script src=calculation.js></script>
+<script src=parameter.js></script>
+<script src=comunication.js></script>
+<script src=screen.js></script>
+<script src=ui.js></script>
+<script src=script.js></script>
+</body>
+</html>
